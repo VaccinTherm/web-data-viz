@@ -2,131 +2,139 @@
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>AquaTech | Cadastro</title>
-
-  <script src="./js/sessao.js"></script>
-
-  <link rel="stylesheet" href="./css/estilo.css" />
-  <link rel="icon" href="./assets/icon/favicon2.ico" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style-login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    
+    <title>Cadastro</title>
 </head>
 
-<body onload="listar()">
-  <!--header inicio-->
-  <div class="header">
+<body id="cadastro">
     <div class="container">
-      <h1 class="titulo">AquaTech</h1>
-      <ul class="navbar">
-        <li>
-          <a href="index.html">Inicial</a>
-        </li>
-        <li>
-          <a href="simulador.html">Simulador</a>
-        </li>
-        <li>|</li>
-        <li>
-          <a href="login.html">Login</a>
-        </li>
-        <li class="agora">
-          <a href="#">Cadastro</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <!--header fim-->
+        <div class="form">
+            <div class="title">
+                <h1>Cadastre-se</h1>
+            </div>
+            
+            <span class="error-message disabled"></span>
+            
+            <div class="form-box">
+                <div class="input-group">
+                    <div class="input-box">
+                        <label for="company">Empresa</label>
+                        <input id="company" type="text" name="company" placeholder="Nome da empresa" autocomplete="off">
+                    </div>
 
-  <div class="login">
-    <div class="alerta_erro">
-      <div class="card_erro" id="cardErro">
-        <span id="mensagem_erro"></span>
-      </div>
-    </div>
-    <div class="container">
-      <div class="card card-cadastro">
-        <h2>Bem-vindo!</h2>
-        <div class="formulario">
-          <!--
-                         Para inserir mais um campo, copie uma das inputs abaixo.
-                         Assim que inserir vá para o script abaixo.
-                     -->
-          <div class="campo">
-            <span>Empresa:</span>
-            <select name="empresas" id="listaEmpresas">
-              <option selected>Selecione uma empresa</option>
-            </select>
-          </div>
-          <div class="campo">
-            <span>Nome:</span>
-            <input id="nome_input" type="text" placeholder="Seu nome" />
-          </div>
-          <div class="campo">
-            <span>E-mail:</span>
-            <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
-          </div>
-          <div class="campo">
-            <span>Senha:</span>
-            <input id="senha_input" type="password" placeholder="******" />
-          </div>
-          <div class="campo">
-            <span>Confirmação da Senha:</span>
-            <input id="confirmacao_senha_input" type="password" placeholder="******" />
-          </div>
-          <button class="botao" onclick="cadastrar()">Cadastrar</button>
+                    <div class="input-box">
+                        <label for="representative">Representante</label>
+                        <input id="representative" type="text" name="representative"
+                            placeholder="Representante da empresa"
+                            autocomplete="off">
+                    </div>
+
+                    <div class="input-box">
+                        <label for="email">E-mail</label>
+                        <input id="cadastro_email" type="email" name="email" placeholder="Digite o seu email" autocomplete="off">
+                    </div>
+
+                </div>
+
+                <div class="input-group">
+                    <div class="input-box">
+                        <label for="number">Celular</label>
+                        <input id="number" type="tel" name="number" placeholder="(xx) xxxxx-xxxx" autocomplete="off">
+                    </div>
+
+                    <div class="input-box">
+                        <label for="password">Senha</label>
+                        <input id="cadastro_password" type="password" name="password" placeholder="Digite a sua senha" autocomplete="off">
+                    </div>
+
+                    <div class="input-box">
+                        <label for="cnpj">CNPJ</label>
+                        <input id="cnpj" type="text" name="cnpj"
+                            placeholder="Digite seu CNPJ"
+                            autocomplete="off">
+                    </div>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <a class="btn-primary" onclick="validation()">Criar conta</a>
+    
+                <a href="./login.html" class="external-link">Já tenho uma conta</a>
+            </div>
         </div>
-        <div id="div_aguardar" class="loading-div">
-          <img src="./assets/circle-loading.gif" id="loading-gif" />
-        </div>
-
-        <div id="div_erros_login"></div>
-      </div>
-    </div>
-  </div>
-
-  <!--footer inicio-->
-  <div class="footer">
-    <div class="container">
-      <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-      <span class="version">v1.0.0</span>
-    </div>
-  </div>
-  <!--footer fim-->
 </body>
-
 </html>
 
 <script>
-  function cadastrar() {
-    aguardar();
+    function validation() {
+        let empresa = document.getElementById('company');
+        let representante = document.getElementById('representative');
+        let cadastroEmail = document.getElementById('cadastro_email');
+        let celNum = document.getElementById('number');
+        let cadastroSenha = document.getElementById('cadastro_password');
+        let cnpj = document.getElementById('cnpj');
 
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-    var nomeVar = nome_input.value;
-    var emailVar = email_input.value;
-    var senhaVar = senha_input.value;
-    var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var empresaVar = listaEmpresas.value
-    if (
-      nomeVar == "" ||
-      emailVar == "" ||
-      senhaVar == "" ||
-      confirmacaoSenhaVar == "" ||
-      empresaVar == ""
-    ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
+        let spanErro = document.getElementsByClassName('error-message')[0];
+        console.log(spanErro);
 
-      finalizarAguardar();
-      return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
-    }
+        spanErro.classList.add('disabled');
 
-    // Enviando o valor da nova input
+        empresa.classList.remove('error-input');
+        representante.classList.remove('error-input');
+        cadastroEmail.classList.remove('error-input');
+        celNum.classList.remove('error-input');
+        cadastroSenha.classList.remove('error-input');
+        cnpj.classList.remove('error-input');
+
+        if(empresa.value != '' && representante.value != '' &&
+            cadastroEmail.value != '' && celNum.value != '' &&
+            cadastroSenha.value != '' && cnpj.value != '') {
+                // Verificando se o campo de email possui arroba
+                if (cadastroEmail.value.indexOf('@') > -1) {
+                    if (!isNaN(celNum.value)) {
+                        if(cadastroSenha.value.length > 5) {
+                            if(!isNaN(cnpj.value)) {
+                                alert('Cadastrado com sucesso');
+                            } else {
+                                spanErro.classList.remove('disabled');
+                                spanErro.innerHTML = 'CNPJ inválido';
+                                cnpj.classList.add('error-input');
+                            }
+                        } else {
+                            spanErro.classList.remove('disabled');
+                            spanErro.innerHTML = 'A senha deve conter no mínino 6 caracteres';
+                            cadastroSenha.classList.add('error-input');
+                        }
+                    } else {
+                        spanErro.classList.remove('disabled');
+                        spanErro.innerHTML = 'Número inválido inválido';
+                        celNum.classList.add('error-input');
+                    }
+                } else {
+                    spanErro.classList.remove('disabled');
+                    spanErro.innerHTML = 'Email inválido';
+                    cadastroEmail.classList.add('error-input');
+                }
+            } else {
+                spanErro.classList.remove('disabled');
+                spanErro.innerHTML = 'Preencha todos os campos';
+                empresa.classList.add('error-input');
+                representante.classList.add('error-input');
+                cadastroEmail.classList.add('error-input');
+                celNum.classList.add('error-input');
+                cadastroSenha.classList.add('error-input');
+                cnpj.classList.add('error-input');
+            }
+
+
+             // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
       method: "POST",
       headers: {
@@ -135,56 +143,33 @@
       body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeVar,
-        emailServer: emailVar,
-        senhaServer: senhaVar,
-        empresaServer: empresaVar
+        empresaServer: empresa.value,
+        celularServer: celNum.value,
+        representanteServer: representante.value,
+        senhaServer: cadastroSenha.value,
+        emailServer: cadastroEmail.value,
+        cnpjServer: cnpj.value
       }),
     })
       .then(function (resposta) {
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          cardErro.style.display = "block";
 
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+        //   div_mensagem.classList.remove("disabled");
+        //   div_mensagem.classList.add("erro");
+        //   div_mensagem.innerHTML = `<p style='text-align: center; color: #5f4336'>Cadastro realizado com sucesso!</p>`;
 
           setTimeout(() => {
-            window.location = "login.html";
+            location.reload()
           }, "2000");
 
-          limparFormulario();
-          finalizarAguardar();
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
       });
-
-    return false;
-  }
-
-  function listar() {
-    fetch("/empresas/listar", {
-      method: "GET",
-    })
-      .then(function (resposta) {
-        resposta.json().then((empresas) => {
-          empresas.forEach((empresa) => {
-            listaEmpresas.innerHTML += `<option value='${empresa.id}'>${empresa.cnpj}</option>`;
-          });
-        });
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-  }
-
-  function sumirMensagem() {
-    cardErro.style.display = "none";
-  }
+    }
 </script>
