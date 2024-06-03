@@ -1,0 +1,425 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --main-color: #7FA9C7;
+  --typography: #3C5B5F;
+  --background: #ECEBE7;
+
+  font-size: 62.5%;
+  /* 1rem = 10px */
+}
+
+*::selection {
+  background-color: var(--typography);
+  color: var(--background);
+}
+
+body {
+  font-size: 2rem;
+  font-family: Manrope;
+  max-width: 100%;
+}
+
+.logo {
+  padding: 5rem 2rem 0 0.5rem;
+}
+
+.logo h2 {
+  color: rgb(48, 101, 101);
+}
+
+.search {
+  position: relative;
+  width: 60%;
+  justify-self: center;
+  display: flex;
+}
+
+.search input {
+  width: 100%;
+  height: 40px;
+  padding: 0 40px;
+  font-size: 16px;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+.search i {
+  position: relative;
+  right: 30px;
+  top: 15px;
+  cursor: pointer;
+}
+
+.user {
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+
+.user img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  margin-left: 70rem;
+  object-fit: cover;
+}
+
+/* .sidebar */
+.sidebar {
+  position: fixed;
+  width: 260px;
+  height: calc(100% - 60px);
+  background-color: var(--background);
+  height: 100vh;
+  border-right: 0.8px solid var(--main-color);
+
+}
+
+.cards-inicio .nome {
+  color: var(--main-color);
+  font-size: 48px;
+  letter-spacing: 5%;
+  margin-top: 2rem;
+}
+
+.cards-inicio .descricao-nome {
+  line-height: 20px;
+  font-size: 20px;
+  color: var(--typography);
+  letter-spacing: 4%;
+  margin-bottom: 5rem;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  padding-top: 3.2rem;
+}
+
+.menu .menu-item {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  color: var(--typography);
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all .3s ease-out;
+  padding-left: 2rem;
+  padding: 1.2rem 0 1.2rem 1.2rem;
+}
+
+.menu .menu-item.selected {
+  background-color: var(--main-color);
+  color: var(--background);
+}
+
+.menu .menu-item.selected path {
+  fill: var(--background);
+}
+
+.menu .menu-item:hover {
+  opacity: 1;
+}
+
+.sidebar ul {
+  margin-top: 20px;
+}
+
+.sidebar ul li {
+  width: 100%;
+  list-style: none;
+}
+
+.sidebar ul li a {
+  width: 100%;
+  text-decoration: none;
+  color: #fff;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar ul li a i {
+  min-width: 60px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.home_sidebar {
+  margin-top: 6rem;
+}
+
+/* main */
+.main {
+  position: absolute;
+  /* top: 60px; */
+  width: calc(100% - 260px);
+  left: 260px;
+  min-height: calc(100vh - 60px);
+  background-color: var(--background);
+}
+
+.cards {
+  width: 100%;
+  padding: 35px 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+}
+
+.cards-side-bar {
+  display: flex;
+  gap: 25rem;
+
+}
+
+.cards-data {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  margin-top: 25px;
+}
+
+.data-calendario {
+  display: flex;
+  gap: 1rem;
+}
+
+.data-calendario p,
+.userName {
+  margin-top: 6px;
+}
+
+.cards .card {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 7px 25px 0 rgba(0, 0, 0, 0.08);
+
+}
+
+.btn-group {
+  padding-left: 2rem;
+}
+
+.titulo_metrica {
+  font-weight: 700;
+}
+
+@keyframes blink {
+  from {
+    opacity: 1;
+    /* Inicialmente visível */
+  }
+
+  to {
+    opacity: 0.5;
+    /* Torna-se invisível */
+  }
+}
+
+.number1 {
+  font-size: 35px;
+  font-weight: 500;
+  color: rgb(4, 85, 132);
+}
+
+.number2 {
+  font-size: 35px;
+  font-weight: 500;
+  color: rgb(255, 224, 137);
+}
+
+.number3 {
+  font-size: 35px;
+  font-weight: 500;
+  color: rgb(181, 254, 160);
+}
+
+.number4 {
+  font-size: 35px;
+  font-weight: 500;
+  color: rgb(255, 142, 142);
+}
+
+
+.card-name {
+  color: #714242;
+  font-weight: 600;
+}
+
+/* chart.js */
+.charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 15px;
+  width: 95%;
+  padding: 20px;
+  padding-top: 0;
+  color: #000000;
+  font-weight: 600;
+  margin-top: 4rem;
+}
+
+.chart {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 7px 25px 0 rgba(0, 0, 0, 0.08);
+}
+
+.sair {
+  display: flex;
+  margin-top: 20rem;
+}
+
+.container-analytics {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+@keyframes piscar {
+  0% {
+    opacity: 1;
+  }
+
+  /* Opacidade total */
+  50% {
+    opacity: 0.5;
+  }
+
+  /* Opacidade zero */
+  100% {
+    opacity: 1;
+  }
+
+  /* Opacidade total */
+}
+
+.container-analytics {
+  margin-top: 1rem;
+}
+
+.chart h3 {
+  color: var(--typography);
+}
+
+/* métricas */
+.metricasAtuais {
+  display: flex;
+  padding: 1rem;
+  justify-content: space-between;
+  border-top: 1px solid #3C5B5F;
+  border-bottom: 1px solid #3C5B5F;
+  padding-block: 20px;
+  width: 1170px;
+  height: 98px;
+  margin: 1rem;
+
+}
+
+.metricasAtuais .metricaTemperatura {
+  display: flex;
+  gap: 1rem;
+}
+
+.metricasAtuais .metricaUmidade {
+  display: flex;
+  gap: 1rem;
+}
+
+.metricasAtuais .metricaSituacao {
+  display: flex;
+  gap: 1rem;
+}
+
+.metricasAtuaisTitle span {
+  line-height: 20px;
+  font-size: 20px;
+  color: var(--typography);
+  margin-left: 5rem;
+}
+
+.metricasAtuais .descricao {
+  font-size: 20px;
+}
+
+.metricasAtuais .descricao .valor {
+  line-height: 28px;
+  font-size: 26px;
+  color: var(--main-color);
+  letter-spacing: 4%;
+  display: flex;
+  align-items: start;
+}
+
+.metricasAtuais .metricaSituacao {
+  margin-top: 1.2rem;
+}
+
+.align {
+  margin-left: 5rem;
+}
+
+.metricas-veiculos {
+  margin-top: 8rem;
+  margin-bottom: 1rem;
+}
+
+.metricas-qtd-veiculos {
+  display: flex;
+  justify-content: start;
+  margin-left: 5.5rem;
+  gap: 3rem;
+}
+
+.veiculos-historico {
+  margin-left: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  /* justify-content: space-around; */
+  /* width: 90%; */
+}
+
+.quantidade-veiculos {
+  display: flex;
+  margin-top: 10px;
+}
+
+.metricas-veiculos-title {
+  font-size: 25px;
+  margin-top: 5px;
+}
+
+.veiculo {
+  display: flex;
+  gap: 8rem;
+  margin-bottom: 1rem;
+}
+
+.veiculos-conteudo {
+  display: flex;
+  gap: 8rem;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.metricaSituacao-metricas-atuais {
+  display: flex;
+  gap: 5px;
+  max-width: 67px;
+}
