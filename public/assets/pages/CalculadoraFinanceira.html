@@ -50,30 +50,31 @@
           <br><br>
         </div>
 
-
+        
         <div class="inputs">
+          <span id="respostaErro"></span>
+          <br>
           <p class="titulo_input">Valor médio das vacinas</p>
           <br>
-          <input id="input_valorVacinasReais" placeholder="Informe o valor médio das vacinas em R$">
+          <input id="input_valorVacinasReais" class="inputValorMedio" placeholder="Informe o valor médio das vacinas em R$">
           <br><br>
           <p class="titulo_input">Quantidade vacina por lote</p>
           <br>
-          <input id="input_qtdVacinasLote" placeholder="Informe a quantidade de vacinas por lote">
+          <input id="input_qtdVacinasLote" class="inputPorLote" placeholder="Informe a quantidade de vacinas por lote">
           <br><br>
           <p class="titulo_input">Quantidade de lote por entrega</p>
           <br>
-          <input id="input_qtdLote" placeholder="Informe a quantidade de lotes por entrega">
+          <input id="input_qtdLote" class="inputPorEntrega" placeholder="Informe a quantidade de lotes por entrega">
           <br><br>
           <p class="titulo_input">Quantidade de entregas no mês</p>
           <br>
-          <input id="input_qtdEntregasMes" placeholder="Informe a quantidade de entregas por mês">
+          <input id="input_qtdEntregasMes" class="inputMes" placeholder="Informe a quantidade de entregas por mês">
           <br><br><br>
           <button onclick="calcular()" class="enviar">
             Calcular
           </button>
           <br><br>
         </div>
-
       </div>
     </div>
     <div class="secundaria"></div>
@@ -198,8 +199,20 @@
     let valorPerda = valorGasto * 0.40
     let numeroFormatado = valorPerda.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 
+    let inputValorMedio = document.querySelector(".inputValorMedio")
+    let inputPorLote = document.querySelector(".inputPorLote")
+    let inputPorEntrega = document.querySelector(".inputPorEntrega")
+    let inputMes = document.querySelector(".inputMes")
+
     if (!valorVacinas || !qtdVacinasLote || !qtdLote || !qtdEntregasMes) {
-      alert(`Preencha todos os campos`)
+      inputValorMedio.classList.add("inputErro")
+      inputPorLote.classList.add("inputErro")
+      inputPorEntrega.classList.add("inputErro")
+      inputMes.classList.add("inputErro")
+
+      respostaErro.innerHTML = `
+      <p class="respostaErro">Preencha todos os campos</p>
+      `
     } else {
       span_resposta.innerHTML =
       `Confira os valores abaixo:<br><br>
@@ -210,8 +223,8 @@
     Com a solução da VaccinTherm, você poderá monitorar os dados<br><br> de temperatura e umidade dos seus transportes.`
     modal.classList.add('active')
     }
-    function closeModal() {
-    modal.classList.remove('active')
   }
+  function closeModal() {
+    modal.classList.remove('active')
   }
 </script>

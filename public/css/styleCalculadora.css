@@ -103,20 +103,81 @@ header {
   
   
   .principal{
-    height: 595px;
+    height: 620px;
     background-color: var(--typography);
     margin: 0px; 
   }
 
-  input{
+  
+
+  .inputValorMedio{
     width: 530px;
     height: 50px;
     border-radius: 10px;
     border: solid var(--typography) 2px;
     background-color: var(--background);
+    color: #000;
     padding: 10px;
     font-size: 17px;
     font-family: 'Manrope';
+   }
+
+   .inputPorLote{
+    width: 530px;
+    height: 50px;
+    border-radius: 10px;
+    border: solid var(--typography) 2px;
+    background-color: var(--background);
+    color: #000;
+    padding: 10px;
+    font-size: 17px;
+    font-family: 'Manrope';
+   }
+
+   .inputPorEntrega{
+    width: 530px;
+    height: 50px;
+    border-radius: 10px;
+    border: solid var(--typography) 2px;
+    background-color: var(--background);
+    color: #000;
+    padding: 10px;
+    font-size: 17px;
+    font-family: 'Manrope';
+   }
+
+   .inputMes{
+    width: 530px;
+    height: 50px;
+    border-radius: 10px;
+    border: solid var(--typography) 2px;
+    background-color: var(--background);
+    color: #000;
+    padding: 10px;
+    font-size: 17px;
+    font-family: 'Manrope';
+   }
+
+   .inputErro{
+    width: 530px;
+    height: 50px;
+    border-radius: 10px;
+    border: solid #FF0000 2px;
+    color: #FF0000;
+    padding: 10px;
+    font-size: 17px;
+    font-family: 'Manrope';
+   }
+
+   .respostaErro {
+    color: #FF0000;
+    background-color: #FF9D9F;
+    height: 25px;
+    margin-left: 25px;
+    margin-right: 25px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 20px;
    }
   
    .titulo_input{
@@ -151,12 +212,12 @@ header {
 
   .inputs{
     width: 600px;
-    height: 560px;
+    height: 595px;
     background-color: var(--background);
-    padding: 35px;
+    padding: 30px;
     margin-right: 40px;
     border-radius: 13px;
-    margin-top: 25px;
+    margin-top: 15px;
    }
   
    .container{
