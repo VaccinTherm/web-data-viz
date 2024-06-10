@@ -109,8 +109,8 @@
                     <input type="password" id="input_senha_cadastro" placeholder="Senha">
                 </div>
 
-                <button class="btn" type="submit" value="Sign up" onclick="validarCadastro()">Cadastre-se</button>
-                <a href="../../index.html"><img class="logo-casa" src="./assets/icon/home.png" alt="logo-home"></a>
+                <button class="btn" type="submit" value="Sign up" onclick="cadastrar()" >Cadastre-se</button>
+                <a href="../../index.html"><img class="logo-casa" src="../images/logo.svg" alt="logo-home"></a>
 
                 <p class="account-text">Already have an account? <a href="#" id="sign-in-btn2">Fazer Cadastro</a></p>
             </div>
@@ -177,78 +177,84 @@
     }
 
     // função para validar cadastro
-    function validarCadastro(){
-        const nomeEmpresa = input_empresa_cadastro.value;
-        const representanteEmpresa = input_representante_cadastro.value;
-        const cnpjEmpresa = input_cnpj_cadastro.value;
-        const celular = input_celular_cadastro.value;
-        const email = input_email_cadastro.value;
-        const senha = input_senha_cadastro.value;
+    // function validarCadastro(){
+    //     const nomeEmpresa = input_empresa_cadastro.value;
+    //     const representanteEmpresa = input_representante_cadastro.value;
+    //     const cnpjEmpresa = input_cnpj_cadastro.value;
+    //     const celular = input_celular_cadastro.value;
+    //     const email = input_email_cadastro.value;
+    //     const senha = input_senha_cadastro.value;
 
-        if(nomeEmpresa == '' || representanteEmpresa == '' || cnpjEmpresa == '' || celular == '' || email == '' || senha == ''){
-            console.log('preencha todos os campos');
-        }else if(cnpjEmpresa.length != 14){
-            console.log('CNPJ INVÁLIDO')
-        }else if(celular.length != 11){
-            console.log('Celular inválido')
-        }else if(email.indexOf('@') < 0){
-            console.log('o email precisa conter o campo @')
-        }else if(senha.length < 6){
-            console.log('o campo senha deverá ter no minimo 6 caracteres')
-        }else{
-            console.log('cadastrando ....')
-        }
-    }
+    //     if(nomeEmpresa == '' || representanteEmpresa == '' || cnpjEmpresa == '' || celular == '' || email == '' || senha == ''){
+    //         console.log('preencha todos os campos');
+    //     }else if(cnpjEmpresa.length != 14){
+    //         console.log('CNPJ INVÁLIDO')
+    //     }else if(celular.length != 11){
+    //         console.log('Celular inválido')
+    //     }else if(email.indexOf('@') < 0){
+    //         console.log('o email precisa conter o campo @')
+    //     }else if(senha.length < 6){
+    //         console.log('o campo senha deverá ter no minimo 6 caracteres')
+    //     }else{
+    //         console.log('cadastrando ....')
+    //     }
+    // }
 
     
 
 
     function cadastrar() {
-        let empresa = input_empresa_cadastro.value;
-        let representante = input_representante_cadastro.value;
-        let cadastroEmail = input_email_cadastro.value;
-        let celNum = input_celular_cadastro.value
-        let cadastroSenha = input_senha_cadastro.value;
-        let cnpj = input_cnpj_cadastro.value;
-        console.log('Chegou ate aqui')
+        let empresaVar = input_empresa_cadastro.value;
+        let nomeVar = input_representante_cadastro.value;
+        let emailVar = input_email_cadastro.value;
+        let celularVar = input_celular_cadastro.value
+        let senhaVar = input_senha_cadastro.value;
+        let cnpjVar = input_cnpj_cadastro.value;
 
         if (
-            empresa == "" ||
-            representante == "" ||
-            cadastroEmail == "" ||
-            celNum == "" ||
-            cadastroSenha == "" ||
-            cnpj == ""
+            empresaVar == "" ||
+            nomeVar == "" ||
+            emailVar == "" ||
+            celularVar == "" ||
+            senhaVar == "" ||
+            cnpjVar == ""
         ) {
             alert("Por favor, insira seus dados.");
             return;
         } else {
-            console.log('Chegou ate aqui')
-            fetch("/usuarios/cadastrar", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    // crie um atributo que recebe o valor recuperado aqui
-                    // Agora vá para o arquivo routes/usuario.js
-                    empresaServer: empresaVar,
-                    representanteServer: representanteVar,
-                    cnpjServer: cnpjVar,
-                    celularServer: celularVar,
-                    emailServer: emailVar,
-                    senhaServer: senhaVar
-                }),
-            })
-                .then(function (resposta) {
-                    console.log("resposta: ", resposta);
-                    setTimeout(() => {
-                        window.location = "./login.html";
-                    }, "1000");
-                })
-                .catch(function (resposta) {
-                    console.log(`#ERRO: ${resposta}`);
-                });
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        representanteServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        empresaServer: empresaVar,
+        cnpjServer: cnpjVar,
+        celularServer: celularVar
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+     console.log("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+
+          setTimeout(() => {
+            window.location = "./cadastro.html";
+          }, "2000");
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
 
         }
     }
