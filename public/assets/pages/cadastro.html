@@ -217,44 +217,56 @@
             cadastroSenha.classList.add('error-input');
             cnpj.classList.add('error-input');
         }
-
-
-        // Enviando o valor da nova input
-        fetch("/usuarios/cadastrar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                empresaServer: empresa.value,
-                celularServer: celNum.value,
-                representanteServer: representante.value,
-                senhaServer: cadastroSenha.value,
-                emailServer: cadastroEmail.value,
-                cnpjServer: cnpj.value
-            }),
-        })
-            .then(function (resposta) {
-                console.log("resposta: ", resposta);
-
-                if (resposta.ok) {
-
-                    //   div_mensagem.classList.remove("disabled");
-                    //   div_mensagem.classList.add("erro");
-                    //   div_mensagem.innerHTML = `<p style='text-align: center; color: #5f4336'>Cadastro realizado com sucesso!</p>`;
-
-                    setTimeout(() => {
-                        location.reload()
-                    }, "2000");
-
-                } else {
-                    throw "Houve um erro ao tentar realizar o cadastro!";
-                }
-            })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-            });
     }
+
+     function cadastrar(){
+        let empresa = input_empresa_cadastro.value;
+        let representante = input_representante_cadastro.value;
+        let cadastroEmail = input_email_cadastro.value;
+        let celNum = input_celular_cadastro.value
+        let cadastroSenha = input_senha_cadastro.value;
+        let cnpj = input_cnpj_cadastro.value;
+        console.log('Chegou ate aqui')
+    
+    if (
+      empresa == "" ||
+      representante == "" ||
+      cadastroEmail == "" ||
+      celNum == "" ||
+      cadastroSenha == "" ||
+      cnpj == "" 
+    ) { 
+      alert ("Por favor, insira seus dados.");
+      return;
+    } else {
+      console.log('Chegou ate aqui')
+      fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          // Agora vá para o arquivo routes/usuario.js
+          empresaServer: empresaVar,
+          representanteServer: representanteVar,
+          cnpjServer: cnpjVar,
+          celularServer: celularVar,
+          emailServer: emailVar,
+          senhaServer: senhaVar
+        }),
+      })
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+          setTimeout(() => {
+            window.location = "./login.html";
+          }, "1000");
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+        });
+      
+    }
+    }
+
 </script>
