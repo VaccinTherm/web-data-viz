@@ -21,7 +21,8 @@
         <div class="signin-signup">
             <div action="" class="sign-in-form">
                 <h2 class="title">Bem-vindo!</h2>
-                <div class="input-field">
+                <span id="mensagem_erro">ERRO</span>
+                <div class="input-field" id="email-login">
                     <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" fill="#3c5b5f"
                             class="bi bi-envelope" viewBox="0 0 16 16">
                             <path
@@ -29,7 +30,7 @@
                         </svg></div>
                     <input type="text" placeholder="E-mail" id="input_email_login">
                 </div>
-                <div class="input-field">
+                <div class="input-field" id="senha-login">
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" fill="#3c5b5f" class="bi bi-lock"
                             viewBox="0 0 16 16">
@@ -39,14 +40,15 @@
                     </div>
                     <input type="password" placeholder="Senha" id="input_senha_login">
                 </div>
-                <button class="btn" value="login" type="submit" onclick="entrar()">Entrar</button>
+                <button class="btn" value="login" type="submit" onclick="validacaoLogin()">Entrar</button>
                 <!-- <a href="./index.html"><img class="logo-casa" src="" alt="logo-home"></a> -->
 
                 <p class="account-text">Don't have an account? <a href="#" id="sign-up-btn2">Sign up</a></p>
             </div>
             <div action="" class="sign-up-form">
                 <h2 class="title">Cadastro</h2>
-                <div class="input-field">
+                <span id="erro_cadastro">ERRO CADASTRO</span>
+                <div class="input-field erro">
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" fill="#3c5b5f"
                             class="bi bi-buildings" viewBox="0 0 16 16">
@@ -107,7 +109,7 @@
                     <input type="password" id="input_senha_cadastro" placeholder="Senha">
                 </div>
 
-                <button class="btn" type="submit" value="Sign up" onclick="cadastrar()">Cadastre-se</button>
+                <button class="btn" type="submit" value="Sign up" onclick="validarCadastro()">Cadastre-se</button>
                 <a href="../../index.html"><img class="logo-casa" src="./assets/icon/home.png" alt="logo-home"></a>
 
                 <p class="account-text">Already have an account? <a href="#" id="sign-in-btn2">Fazer Cadastro</a></p>
@@ -137,6 +139,8 @@
 
 <script>
 
+    // transição
+
     const sign_in_btn = document.querySelector("#sign-in-btn");
     const sign_up_btn = document.querySelector("#sign-up-btn");
     const container = document.querySelector(".container");
@@ -155,71 +159,51 @@
         container.classList.remove("sign-up-mode2");
     });
 
+    // função para validação do login
+    function validacaoLogin() {
+        const email = input_email_login.value;
+        const senha = input_senha_login.value
 
-
-
-    function validation() {
-        let empresa = document.getElementById('company');
-        let representante = document.getElementById('representative');
-        let cadastroEmail = document.getElementById('cadastro_email');
-        let celNum = document.getElementById('number');
-        let cadastroSenha = document.getElementById('cadastro_password');
-        let cnpj = document.getElementById('cnpj');
-
-        let spanErro = document.getElementsByClassName('error-message')[0];
-        console.log(spanErro);
-
-        spanErro.classList.add('disabled');
-
-        empresa.classList.remove('error-input');
-        representante.classList.remove('error-input');
-        cadastroEmail.classList.remove('error-input');
-        celNum.classList.remove('error-input');
-        cadastroSenha.classList.remove('error-input');
-        cnpj.classList.remove('error-input');
-
-        if (empresa.value != '' && representante.value != '' &&
-            cadastroEmail.value != '' && celNum.value != '' &&
-            cadastroSenha.value != '' && cnpj.value != '') {
-            // Verificando se o campo de email possui arroba
-            if (cadastroEmail.value.indexOf('@') > -1) {
-                if (!isNaN(celNum.value)) {
-                    if (cadastroSenha.value.length > 5) {
-                        if (!isNaN(cnpj.value)) {
-                            alert('Cadastrado com sucesso');
-                        } else {
-                            spanErro.classList.remove('disabled');
-                            spanErro.innerHTML = 'CNPJ inválido';
-                            cnpj.classList.add('error-input');
-                        }
-                    } else {
-                        spanErro.classList.remove('disabled');
-                        spanErro.innerHTML = 'A senha deve conter no mínino 6 caracteres';
-                        cadastroSenha.classList.add('error-input');
-                    }
-                } else {
-                    spanErro.classList.remove('disabled');
-                    spanErro.innerHTML = 'Número inválido inválido';
-                    celNum.classList.add('error-input');
-                }
-            } else {
-                spanErro.classList.remove('disabled');
-                spanErro.innerHTML = 'Email inválido';
-                cadastroEmail.classList.add('error-input');
-            }
+        if (email == '' || senha == '') {
+            console.log('CAMPOS VAZIOS');
+        } else if (email.indexOf('@') < 0) {
+            console.log('O campo email precisa conter o caracter @')
+        } else if (senha.length < 6) {
+            console.log('o campo senha deverá conter pelo menos 6 caracteres')
         } else {
-            spanErro.classList.remove('disabled');
-            spanErro.innerHTML = 'Preencha todos os campos';
-            empresa.classList.add('error-input');
-            representante.classList.add('error-input');
-            cadastroEmail.classList.add('error-input');
-            celNum.classList.add('error-input');
-            cadastroSenha.classList.add('error-input');
-            cnpj.classList.add('error-input');
+            console.log('entrando...')
+        }
+
+    }
+
+    // função para validar cadastro
+    function validarCadastro(){
+        const nomeEmpresa = input_empresa_cadastro.value;
+        const representanteEmpresa = input_representante_cadastro.value;
+        const cnpjEmpresa = input_cnpj_cadastro.value;
+        const celular = input_celular_cadastro.value;
+        const email = input_email_cadastro.value;
+        const senha = input_senha_cadastro.value;
+
+        if(nomeEmpresa == '' || representanteEmpresa == '' || cnpjEmpresa == '' || celular == '' || email == '' || senha == ''){
+            console.log('preencha todos os campos');
+        }else if(cnpjEmpresa.length != 14){
+            console.log('CNPJ INVÁLIDO')
+        }else if(celular.length != 11){
+            console.log('Celular inválido')
+        }else if(email.indexOf('@') < 0){
+            console.log('o email precisa conter o campo @')
+        }else if(senha.length < 6){
+            console.log('o campo senha deverá ter no minimo 6 caracteres')
+        }else{
+            console.log('cadastrando ....')
         }
     }
 
-     function cadastrar(){
+    
+
+
+    function cadastrar() {
         let empresa = input_empresa_cadastro.value;
         let representante = input_representante_cadastro.value;
         let cadastroEmail = input_email_cadastro.value;
@@ -227,46 +211,46 @@
         let cadastroSenha = input_senha_cadastro.value;
         let cnpj = input_cnpj_cadastro.value;
         console.log('Chegou ate aqui')
-    
-    if (
-      empresa == "" ||
-      representante == "" ||
-      cadastroEmail == "" ||
-      celNum == "" ||
-      cadastroSenha == "" ||
-      cnpj == "" 
-    ) { 
-      alert ("Por favor, insira seus dados.");
-      return;
-    } else {
-      console.log('Chegou ate aqui')
-      fetch("/usuarios/cadastrar", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          // crie um atributo que recebe o valor recuperado aqui
-          // Agora vá para o arquivo routes/usuario.js
-          empresaServer: empresaVar,
-          representanteServer: representanteVar,
-          cnpjServer: cnpjVar,
-          celularServer: celularVar,
-          emailServer: emailVar,
-          senhaServer: senhaVar
-        }),
-      })
-        .then(function (resposta) {
-          console.log("resposta: ", resposta);
-          setTimeout(() => {
-            window.location = "./login.html";
-          }, "1000");
-        })
-        .catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
-        });
-      
-    }
+
+        if (
+            empresa == "" ||
+            representante == "" ||
+            cadastroEmail == "" ||
+            celNum == "" ||
+            cadastroSenha == "" ||
+            cnpj == ""
+        ) {
+            alert("Por favor, insira seus dados.");
+            return;
+        } else {
+            console.log('Chegou ate aqui')
+            fetch("/usuarios/cadastrar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    empresaServer: empresaVar,
+                    representanteServer: representanteVar,
+                    cnpjServer: cnpjVar,
+                    celularServer: celularVar,
+                    emailServer: emailVar,
+                    senhaServer: senhaVar
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+                    setTimeout(() => {
+                        window.location = "./login.html";
+                    }, "1000");
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+
+        }
     }
 
 </script>
