@@ -3,12 +3,20 @@ var router = express.Router();
 
 var aquarioController = require("../controllers/aquarioController");
 
-router.get("/:empresaId", function (req, res) {
-  aquarioController.buscarAquariosPorEmpresa(req, res);
+// router.get("/:empresaId", function (req, res) {
+//   aquarioController.buscarAquariosPorEmpresa(req, res);
+// });
+
+router.get("/buscar-registros", function (req, res) {
+  aquarioController.buscarRegistrosPorEmpresa(req, res);
 });
 
-router.post("/cadastrar", function (req, res) {
-  aquarioController.cadastrar(req, res);
-})
+router.get("/ultimo-registro", function (req, res) {
+  aquarioController.buscarUltimoRegistroPorEmpresa(req, res);
+});
+
+// router.post("/cadastrar", function (req, res) {
+//   aquarioController.cadastrar(req, res);
+// })
 
 module.exports = router;

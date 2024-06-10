@@ -1,259 +1,378 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- link do rostinho -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="./assets/css/dash.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- link do rostinho -->
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="./assets/css/dash.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-</head>
-
-<body>
-  <div class="cabecalho">
-    <div class="home">
-      <a href="../index.html"><img src="assets/img/home.png" alt="Home"></a>
-    </div>
-    <div class="usuarios"><img src="assets/img/users.png"></div>
-    <div id="veiculos" class="veiculos"><img src="assets/img/cars.png"></div>
-    <div class="logo"><img src="assets/img/logo.png"></div>
-  </div>
-
-  <div class="mensagem">Olá Rayane</div>
-  <div class="submensagem">Seja bem vinda! Acompanhe por aqui a situação do seu transporte.</div>
-
-  <div class="hora">
-    <div class="data">14 Abr, 2024</div>
-    <div class="imgData"><img src="assets/img/calendario.png"></div>
-  </div>
-
-  <div class="linha"></div>
-  <div class="perfil">
-    <div class="imgPerfil"><img src="assets/img/perfil.png"></div>
-    <div class="arroba">@rayane</div>
-    <div class="nome">Rayane G.</div>
-  </div>
-
-  <div class="metricas">
-    <p class="titulo">Métricas Atuais</p>
-
-    <div class="linha1"></div>
-
-    <div class="temperatura">
-      <div class="imgTemp"><img src="assets/img/temperatura.png"></div>
-      <div class="legenda">Temperatura</div>
-      <div class="medida">8° C</div>
+  <body>
+    <div class="cabecalho">
+      <div class="home">
+        <a href="../index.html"><img src="assets/img/home.png" alt="Home" /></a>
+      </div>
+      <div class="usuarios"><img src="assets/img/users.png" /></div>
+      <div id="veiculos" class="veiculos">
+        <img src="assets/img/cars.png" />
+      </div>
+      <div class="logo"><img src="assets/img/logo.png" /></div>
     </div>
 
-    <div class="Umidade">
-      <div class="imgUmi"><img src="assets/img/umidade.png"></div>
-      <div class="legenda">Umidade</div>
-      <div class="medida">20%</div>
+    <div class="mensagem">Olá Rayane</div>
+    <div class="submensagem">
+      Seja bem vinda! Acompanhe por aqui a situação do seu transporte.
     </div>
 
-    <div class="Situação">
-      <div class="legenda">Situação</div>
-      <div class="situacao"></div>
+    <div class="hora">
+      <div class="data">14 Abr, 2024</div>
+      <div class="imgData"><img src="assets/img/calendario.png" /></div>
     </div>
 
-    <div class="linha2"></div>
-  </div>
+    <div class="linha"></div>
+    <div class="perfil">
+      <div class="imgPerfil"><img src="assets/img/perfil.png" /></div>
+      <div class="arroba">@rayane</div>
+      <div class="nome">Rayane G.</div>
+    </div>
 
-  <div class="charts">
-    <div class="chart-container">
-      <canvas id="graficoTemperatura"></canvas>
+    <div class="metricas">
+      <p class="titulo">Métricas Atuais</p>
+
+      <div class="linha1"></div>
+
+      <div class="temperatura">
+        <div class="imgTemp"><img src="assets/img/temperatura.png" /></div>
+        <div class="legenda">Temperatura</div>
+        <div class="medida">8° C</div>
+      </div>
+
+      <div class="Umidade">
+        <div class="imgUmi"><img src="assets/img/umidade.png" /></div>
+        <div class="legenda">Umidade</div>
+        <div class="medida">20%</div>
+      </div>
+
+      <div class="Situação">
+        <div class="legenda">Situação</div>
+        <div class="situacao"></div>
+      </div>
+
+      <div class="linha2"></div>
     </div>
-    <div class="chart-container">
-      <canvas id="graficoUmidade"></canvas>
+
+    <div class="charts">
+      <div class="chart-container">
+        <canvas id="graficoTemperatura"></canvas>
+      </div>
+      <div class="chart-container">
+        <canvas id="graficoUmidade"></canvas>
+      </div>
     </div>
-  </div>
+
+    <script>
+      // const idEmpresa = sessionStorage.ID_EMPRESA;
+      const idEmpresa = 1;
+      const labels = [];
+      const dataTemperatura = [];
+      const dataUmidade = [];
+      const dadosTemperatura = {
+        labels: labels,
+        datasets: [
+          {
+            label: "Temperatura",
+            data: dataTemperatura,
+            borderColor: "#7FA9C7",
+            borderWidth: 2,
+            pointBackgroundColor: "#7FA9C7",
+            pointRadius: 4,
+            pointHoverRadius: 6,
+          },
+        ],
+      };
+      const dadosUmidade = {
+        labels: labels,
+        datasets: [
+          {
+            label: "Umidade",
+            data: dataUmidade,
+            backgroundColor: "rgba(127, 169, 199, 0.2)",
+            borderColor: "#7FA9C7",
+            borderWidth: 2,
+            hoverBackgroundColor: "rgba(127, 169, 199, 0.4)",
+            hoverBorderColor: "#7FA9C7",
+          },
+        ],
+      };
+
+      var ctxTemperatura = document
+        .getElementById("graficoTemperatura")
+        .getContext("2d");
+      var graficoTemperatura = new Chart(ctxTemperatura, {
+        type: "line",
+        data: dadosTemperatura,
+        options: {
+          plugins: {
+            tooltip: {
+              titleFont: {
+                family: "Manrope, sans-serif",
+              },
+              bodyFont: {
+                family: "Manrope, sans-serif",
+              },
+            },
+            legend: {
+              display: true,
+              labels: {
+                usePointStyle: true,
+                boxWidth: 0,
+              },
+            },
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: "Temperatura (°C)",
+                font: {
+                  family: "Manrope, sans-serif",
+                  size: 14,
+                },
+                color: "#7FA9C7",
+              },
+            },
+            x: {
+              title: {
+                display: true,
+                text: "Horário",
+                font: {
+                  family: "Manrope, sans-serif",
+                  size: 14,
+                },
+                color: "#7FA9C7",
+              },
+            },
+          },
+        },
+      });
+
+      var ctxUmidade = document
+        .getElementById("graficoUmidade")
+        .getContext("2d");
+      var graficoUmidade = new Chart(ctxUmidade, {
+        type: "bar",
+        data: dadosUmidade,
+        options: {
+          plugins: {
+            tooltip: {
+              titleFont: {
+                family: "Manrope, sans-serif",
+              },
+              bodyFont: {
+                family: "Manrope, sans-serif",
+              },
+            },
+            legend: {
+              display: true,
+              labels: {
+                usePointStyle: true,
+                boxWidth: 0,
+              },
+            },
+          },
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: "Horário",
+                font: {
+                  family: "Manrope, sans-serif",
+                  size: 14,
+                },
+                color: "#7FA9C7",
+              },
+            },
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: "Umidade (%)",
+                font: {
+                  family: "Manrope, sans-serif",
+                  size: 14,
+                },
+                color: "#7FA9C7",
+              },
+            },
+          },
+        },
+      });
+
+      function atualizaGraficos() {
+        graficoTemperatura.update();
+        graficoUmidade.update();
+      }
+
+      function obterRegistrosDoSensor(idEmpresa) {
+        return fetch(`/aquarios/buscar-registros`, {
+          cache: "no-store",
+        })
+          .then(function (response) {
+            if (response.ok) {
+              return response.json();
+            } else {
+              console.error("Nenhum dado encontrado ou erro na API");
+              return Promise.reject("Erro na API");
+            }
+          })
+          .then(function (registros) {
+            console.log(registros);
+            for (let i = 0; i < registros.length; i++) {
+              const registro = registros[i];
+              labels.push(registro.dataHora);
+              const temperatura = parseFloat(registro.dht11Temperatura);
+              const umidade = parseFloat(registro.dht11Umidade);
+              console.log(temperatura);
+              dataTemperatura.push(temperatura);
+              dataUmidade.push(umidade);
+            }
+            atualizaGraficos();
+          })
+          .catch(function (error) {
+            console.error(
+              `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+            );
+          });
+      }
+
+      function obterUltimoRegistroDoSensor(idEmpresa) {
+        return fetch(`/aquarios/ultimo-registro`, {
+          cache: "no-store",
+        })
+          .then(function (response) {
+            if (response.ok) {
+              return response.json();
+            } else {
+              console.error("Nenhum dado encontrado ou erro na API");
+              return Promise.reject("Erro na API");
+            }
+          })
+          .then(function (novoRegistro) {
+            const temperatura = parseFloat(novoRegistro[0].dht11Temperatura);
+            const umidade = parseFloat(novoRegistro[0].dht11Umidade);
+            const dataHora = novoRegistro[0].dataHora;
+
+            console.log(temperatura, umidade, dataHora);
+
+            if (
+              dataHora !==
+              dadosTemperatura.labels[dadosTemperatura.labels.length - 1]
+            ) {
+              dadosTemperatura.labels.shift();
+              dadosTemperatura.labels.push(dataHora);
+
+              dadosUmidade.labels.shift();
+              dadosUmidade.labels.push(dataHora);
+
+              dadosTemperatura.datasets[0].data.shift();
+              dadosTemperatura.datasets[0].data.push(temperatura);
+
+              dadosUmidade.datasets[0].data.shift();
+              dadosUmidade.datasets[0].data.push(umidade);
+              atualizaGraficos();
+            }
+          })
+          .catch(function (error) {
+            console.error(
+              `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+            );
+          });
+      }
+
+      function inicializar(idEmpresa) {
+        obterRegistrosDoSensor(idEmpresa)
+          .then(
+            setInterval(function () {
+              obterUltimoRegistroDoSensor(idEmpresa);
+              console.log("entrou");
+            }, 2000)
+          )
+          .catch(function (error) {
+            console.error(`Erro na inicialização: ${error.message}`);
+          });
+      }
+      inicializar(idEmpresa);
+    </script>
+
+    <div class="telaVeiculos">
+      <div class="metricasSegTela">
+        <p class="tituloSegTela">Métricas Atuais</p>
+        <div class="linhaSegTela"></div>
+        <p class="veiculosSegTela">Veículos: 5</p>
+      </div>
+
+      <div class="caminhoes">
+        <div><img class="imgCam" src="assets/img/caminhao.png" /></div>
+        <div class="veiculo">Veículo 1</div>
+        <div class="situacao"></div>
+        <p class="texto">Boa</p>
+        <div class="vacina">Coronavac</div>
+        <div><img src="assets/img/mais.png" /></div>
+      </div>
+
+      <div class="caminhoes">
+        <div><img class="imgCam" src="assets/img/caminhao.png" /></div>
+        <div class="veiculo">Veículo 2</div>
+        <div class="situacao"></div>
+        <p class="texto">Boa</p>
+        <div class="vacina">Coronavac</div>
+        <div><img src="assets/img/mais.png" /></div>
+      </div>
+
+      <div class="caminhoes">
+        <div><img class="imgCam" src="assets/img/caminhao.png" /></div>
+        <div class="veiculo">Veículo 3</div>
+        <div class="situacao"></div>
+        <p class="texto">Boa</p>
+        <div class="vacina">Coronavac</div>
+        <div><img src="assets/img/mais.png" /></div>
+      </div>
+
+      <div class="caminhoes">
+        <div><img class="imgCam" src="assets/img/caminhao.png" /></div>
+        <div class="veiculo">Veículo 4</div>
+        <div class="situacao"></div>
+        <p class="texto">Boa</p>
+        <div class="vacina">Coronavac</div>
+        <div><img src="assets/img/mais.png" /></div>
+      </div>
+
+      <div class="caminhoes">
+        <div><img class="imgCam" src="assets/img/caminhao.png" /></div>
+        <div class="veiculo">Veículo 5</div>
+        <div class="situacao"></div>
+        <p class="texto">Boa</p>
+        <div class="vacina">Coronavac</div>
+        <div><img src="assets/img/mais.png" /></div>
+      </div>
+    </div>
+  </body>
 
   <script>
-    var ctxTemperatura = document.getElementById('graficoTemperatura').getContext('2d');
-    var graficoTemperatura = new Chart(ctxTemperatura, {
-      type: 'line',
-      data: {
-        labels: ['10:30', '11:00', '11:30', '12:00', '12:30'],
-        datasets: [{
-          label: 'Temperatura',
-          data: [10, 12, 8, 4, 6],
-          borderColor: '#7FA9C7',
-          borderWidth: 2,
-          pointBackgroundColor: '#7FA9C7',
-          pointRadius: 4,
-          pointHoverRadius: 6
-        }]
-      },
-      options: {
-        plugins: {
-          tooltip: {
-            titleFont: {
-              family: 'Manrope, sans-serif'
-            },
-            bodyFont: {
-              family: 'Manrope, sans-serif'
-            }
-          },
-          legend: {
-            display: true,
-            labels: {
-              usePointStyle: true,
-              boxWidth: 0
-            }
-          }
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            title: {
-              display: true,
-              text: 'Temperatura (°C)',
-              font: {
-                family: 'Manrope, sans-serif',
-                size: 14
-              },
-              color: '#7FA9C7'
-            }
-          },
-          x: {
-            title: {
-              display: true,
-              text: 'Horário',
-              font: {
-                family: 'Manrope, sans-serif',
-                size: 14
-              },
-              color: '#7FA9C7'
-            }
-          }
-        }
-      }
-    });
-
-    var ctxUmidade = document.getElementById('graficoUmidade').getContext('2d');
-    var graficoUmidade = new Chart(ctxUmidade, {
-      type: 'bar',
-      data: {
-        labels: ['10:30', '11:00', '11:30', '12:00', '12:30'],
-        datasets: [{
-          label: 'Umidade',
-          data: [60, 75, 80, 65, 70],
-          backgroundColor: 'rgba(127, 169, 199, 0.2)',
-          borderColor: '#7FA9C7',
-          borderWidth: 2,
-          hoverBackgroundColor: 'rgba(127, 169, 199, 0.4)',
-          hoverBorderColor: '#7FA9C7'
-        }]
-      },
-      options: {
-        plugins: {
-          tooltip: {
-            titleFont: {
-              family: 'Manrope, sans-serif'
-            },
-            bodyFont: {
-              family: 'Manrope, sans-serif'
-            }
-          },
-          legend: {
-            display: true,
-            labels: {
-              usePointStyle: true,
-              boxWidth: 0
-            }
-          }
-        },
-        scales: {
-          x: {
-            title: {
-              display: true,
-              text: 'Horário',
-              font: {
-                family: 'Manrope, sans-serif',
-                size: 14
-              },
-              color: '#7FA9C7'
-            }
-          },
-          y: {
-            beginAtZero: true,
-            title: {
-              display: true,
-              text: 'Umidade (%)',
-              font: {
-                family: 'Manrope, sans-serif',
-                size: 14
-              },
-              color: '#7FA9C7'
-            }
-          }
-        }
-      }
+    document.getElementById("veiculos").addEventListener("click", function () {
+      var telaVeiculos = document.querySelector(".telaVeiculos");
+      telaVeiculos.style.display = "block";
     });
   </script>
-
-  <div class="telaVeiculos">
-    <div class="metricasSegTela">
-      <p class="tituloSegTela">Métricas Atuais</p>
-      <div class="linhaSegTela"></div>
-      <p class="veiculosSegTela">Veículos: 5</p>
-    </div>
-
-    <div class="caminhoes">
-      <div><img class="imgCam" src="assets/img/caminhao.png"></div>
-      <div class="veiculo">Veículo 1</div>
-      <div class="situacao"></div>
-      <p class="texto">Boa</p>
-      <div class="vacina">Coronavac</div>
-      <div><img src="assets/img/mais.png"></div>
-    </div>
-
-    <div class="caminhoes">
-      <div><img class="imgCam" src="assets/img/caminhao.png"></div>
-      <div class="veiculo">Veículo 2</div>
-      <div class="situacao"></div>
-      <p class="texto">Boa</p>
-      <div class="vacina">Coronavac</div>
-      <div><img src="assets/img/mais.png"></div>
-    </div>
-
-    <div class="caminhoes">
-      <div><img class="imgCam" src="assets/img/caminhao.png"></div>
-      <div class="veiculo">Veículo 3</div>
-      <div class="situacao"></div>
-      <p class="texto">Boa</p>
-      <div class="vacina">Coronavac</div>
-      <div><img src="assets/img/mais.png"></div>
-    </div>
-
-    <div class="caminhoes">
-      <div><img class="imgCam" src="assets/img/caminhao.png"></div>
-      <div class="veiculo">Veículo 4</div>
-      <div class="situacao"></div>
-      <p class="texto">Boa</p>
-      <div class="vacina">Coronavac</div>
-      <div><img src="assets/img/mais.png"></div>
-    </div>
-
-    <div class="caminhoes">
-      <div><img class="imgCam" src="assets/img/caminhao.png"></div>
-      <div class="veiculo">Veículo 5</div>
-      <div class="situacao"></div>
-      <p class="texto">Boa</p>
-      <div class="vacina">Coronavac</div>
-      <div><img src="assets/img/mais.png"></div>
-    </div>
-  </div>
-
-</body>
-
-<script>
-  document.getElementById('veiculos').addEventListener('click', function () {
-    var telaVeiculos = document.querySelector('.telaVeiculos');
-    telaVeiculos.style.display = 'block';
-  });
-</script>
+</html>
