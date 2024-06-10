@@ -238,7 +238,7 @@
           })
           .then(function (registros) {
             console.log(registros);
-            for (let i = 0; i < registros.length; i++) {
+            for (let i = registros.length - 1; i >= 0; i--) {
               const registro = registros[i];
               labels.push(registro.dataHora);
               const temperatura = parseFloat(registro.dht11Temperatura);
@@ -275,11 +275,11 @@
 
             metrica_temperatura.innerHTML = `${temperatura}° C`;
             metrica_umidade.innerHTML = `${umidade}%`;
+            console.log(novoRegistro);
+            console.log(dataHora);
+            console.log(dadosTemperatura.labels[dadosTemperatura.labels.length - 1]);
 
-            if (
-              dataHora !==
-              dadosTemperatura.labels[dadosTemperatura.labels.length - 1]
-            ) {
+            if (dataHora !== dadosTemperatura.labels[dadosTemperatura.labels.length - 1]) {
               dadosTemperatura.labels.shift();
               dadosTemperatura.labels.push(dataHora);
 
