@@ -54,18 +54,18 @@
       <div class="temperatura">
         <div class="imgTemp"><img src="assets/img/temperatura.png" /></div>
         <div class="legenda">Temperatura</div>
-        <div class="medida">8° C</div>
+        <div id="metrica_temperatura" class="medida">8° C</div>
       </div>
 
       <div class="Umidade">
         <div class="imgUmi"><img src="assets/img/umidade.png" /></div>
         <div class="legenda">Umidade</div>
-        <div class="medida">20%</div>
+        <div id="metrica_umidade" class="medida">20%</div>
       </div>
 
       <div class="Situação">
         <div class="legenda">Situação</div>
-        <div class="situacao"></div>
+        <div class="situacao" id="metrica_situacao"></div>
       </div>
 
       <div class="linha2"></div>
@@ -273,7 +273,8 @@
             const umidade = parseFloat(novoRegistro[0].dht11Umidade);
             const dataHora = novoRegistro[0].dataHora;
 
-            console.log(temperatura, umidade, dataHora);
+            metrica_temperatura.innerHTML = `${temperatura}° C`;
+            metrica_umidade.innerHTML = `${umidade}%`;
 
             if (
               dataHora !==
