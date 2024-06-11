@@ -303,3 +303,11 @@ a {
   font-size: 20px;
   font-weight: 700;
 }
+
+.optionText {
+  font-size: 17px;
+  color: #3c5b5f;
+  margin-bottom: 10px;
+  text-align: center;
+  font-family: "Manrope"; 
+}
