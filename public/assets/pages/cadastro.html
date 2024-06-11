@@ -109,9 +109,9 @@
                     </div>
                     <input type="password" id="input_senha_cadastro" placeholder="Senha">
                 </div>
-
                 <button class="btn" type="submit" value="Sign up" onclick="validarCadastro()">Cadastre-se</button>
-
+                <!-- <button class="btn" type="submit" value="Sign up" onclick="cadastrar()" >Cadastre-se</button> -->
+                <a href="../../index.html"><img class="logo-casa" src="../images/logo.svg" alt="logo-home"></a>
                 <p class="account-text">Already have an account? <a href="#" id="sign-in-btn2">Fazer Cadastro</a></p>
             </div>
         </div>
@@ -187,7 +187,6 @@
             div_senha_validacao.classList.add('correct');
             cadastrar();
         }
-
     }
 
     // função para validar cadastro
@@ -251,8 +250,7 @@
             erro_cadastro.innerHTML = 'O campo senha deve ter no minimo 6 caracteres';
         } else {
             todosOsCamposSaoValidos();
-            erro_cadastro.innerHTML = 'Cadastro realizado com sucesso';
-
+            erro_cadastro.innerHTML = '';
             cadastrar();
         }
     }
@@ -274,56 +272,113 @@
         erro_cadastro.innerHTML = '';
     }
 
-
-
     function cadastrar() {
-        let empresa = input_empresa_cadastro.value;
-        let representante = input_representante_cadastro.value;
-        let cadastroEmail = input_email_cadastro.value;
-        let celNum = input_celular_cadastro.value
-        let cadastroSenha = input_senha_cadastro.value;
-        let cnpj = input_cnpj_cadastro.value;
-        console.log('Chegou ate aqui')
+        let empresaVar = input_empresa_cadastro.value;
+        let nomeVar = input_representante_cadastro.value;
+        let emailVar = input_email_cadastro.value;
+        let celularVar = input_celular_cadastro.value
+        let senhaVar = input_senha_cadastro.value;
+        let cnpjVar = input_cnpj_cadastro.value;
 
-        if (
-            empresa == "" ||
-            representante == "" ||
-            cadastroEmail == "" ||
-            celNum == "" ||
-            cadastroSenha == "" ||
-            cnpj == ""
-        ) {
-            alert("Por favor, insira seus dados.");
-            return;
+        // if (
+        //     empresaVar == "" ||
+        //     nomeVar == "" ||
+        //     emailVar == "" ||
+        //     celularVar == "" ||
+        //     senhaVar == "" ||
+        //     cnpjVar == ""
+        // ) {
+        //     alert("Por favor, insira seus dados.");
+        //     return;
+        // } else {
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        representanteServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        empresaServer: empresaVar,
+        cnpjServer: cnpjVar,
+        celularServer: celularVar
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+     console.log("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+
+          setTimeout(() => {
+            window.location = "./cadastro.html";
+          }, "2000");
         } else {
-            console.log('Chegou ate aqui')
-            fetch("/usuarios/cadastrar", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    // crie um atributo que recebe o valor recuperado aqui
-                    // Agora vá para o arquivo routes/usuario.js
-                    empresaServer: empresaVar,
-                    representanteServer: representanteVar,
-                    cnpjServer: cnpjVar,
-                    celularServer: celularVar,
-                    emailServer: emailVar,
-                    senhaServer: senhaVar
-                }),
-            })
-                .then(function (resposta) {
-                    console.log("resposta: ", resposta);
-                    setTimeout(() => {
-                        window.location = "./login.html";
-                    }, "1000");
-                })
-                .catch(function (resposta) {
-                    console.log(`#ERRO: ${resposta}`);
-                });
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
 
         }
+    // }
+
+    function entrar() {
+        let emailVar = input_email_login.value;
+        let senhaVar = input_senha_login.value
+
+        // if (emailVar == "" || senhaVar == "") {
+        //     alert("Por favor, insira seus dados.");
+        //     return false;
+        // }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+                    // sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+
+                    setTimeout(function () {
+                        window.location = "../../dashboard/dash.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
     }
 
 </script>

@@ -294,6 +294,7 @@ a {
 }
 .correct{
   border: 2px solid #34a849;
+  color: #34a849;
 }
 
 #mensagem_erro,
