@@ -81,8 +81,7 @@
     </div>
 
     <script>
-      // const idEmpresa = sessionStorage.ID_EMPRESA;
-      const idEmpresa = 1;
+      const idEmpresa = sessionStorage.ID_EMPRESA;
       const labels = [];
       const dataTemperatura = [];
       const dataUmidade = [];
@@ -225,7 +224,7 @@
       }
 
       function obterRegistrosDoSensor(idEmpresa) {
-        return fetch(`/aquarios/buscar-registros`, {
+        return fetch(`/aquarios/buscar-registros/${idEmpresa}`, {
           cache: "no-store",
         })
           .then(function (response) {
@@ -237,13 +236,11 @@
             }
           })
           .then(function (registros) {
-            console.log(registros);
             for (let i = registros.length - 1; i >= 0; i--) {
               const registro = registros[i];
               labels.push(registro.dataHora);
               const temperatura = parseFloat(registro.dht11Temperatura);
               const umidade = parseFloat(registro.dht11Umidade);
-              console.log(temperatura);
               dataTemperatura.push(temperatura);
               dataUmidade.push(umidade);
             }
@@ -257,7 +254,7 @@
       }
 
       function obterUltimoRegistroDoSensor(idEmpresa) {
-        return fetch(`/aquarios/ultimo-registro`, {
+        return fetch(`/aquarios/ultimo-registro/${idEmpresa}`, {
           cache: "no-store",
         })
           .then(function (response) {
@@ -275,9 +272,6 @@
 
             metrica_temperatura.innerHTML = `${temperatura}° C`;
             metrica_umidade.innerHTML = `${umidade}%`;
-            console.log(novoRegistro);
-            console.log(dataHora);
-            console.log(dadosTemperatura.labels[dadosTemperatura.labels.length - 1]);
 
             if (dataHora !== dadosTemperatura.labels[dadosTemperatura.labels.length - 1]) {
               dadosTemperatura.labels.shift();
