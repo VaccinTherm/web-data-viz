@@ -289,6 +289,16 @@ a {
   display: none;
 }
 
-.error {
-  border:1px solid #c21212;
+.error{
+  border:2px solid #c21212;
+}
+.correct{
+  border: 2px solid #34a849;
+}
+
+#mensagem_erro,
+#erro_cadastro{
+  color: #b70000;
+  font-size: 20px;
+  font-weight: 700;
 }

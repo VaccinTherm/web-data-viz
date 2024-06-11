@@ -21,8 +21,8 @@
         <div class="signin-signup">
             <div action="" class="sign-in-form">
                 <h2 class="title">Bem-vindo!</h2>
-                <span id="mensagem_erro">ERRO</span>
-                <div class="input-field" id="email-login">
+                <span id="mensagem_erro"></span>
+                <div class="input-field" id="div_login_validacao">
                     <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" fill="#3c5b5f"
                             class="bi bi-envelope" viewBox="0 0 16 16">
                             <path
@@ -30,7 +30,7 @@
                         </svg></div>
                     <input type="text" placeholder="E-mail" id="input_email_login">
                 </div>
-                <div class="input-field" id="senha-login">
+                <div class="input-field" id="div_senha_validacao">
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" fill="#3c5b5f" class="bi bi-lock"
                             viewBox="0 0 16 16">
@@ -45,10 +45,11 @@
 
                 <p class="account-text">Don't have an account? <a href="#" id="sign-up-btn2">Sign up</a></p>
             </div>
+            <!-- cadastro -->
             <div action="" class="sign-up-form">
                 <h2 class="title">Cadastro</h2>
-                <span id="erro_cadastro">ERRO CADASTRO</span>
-                <div class="input-field erro">
+                <span id="erro_cadastro"></span>
+                <div class="input-field" id="div_cadastro_validacao_empresa">
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" fill="#3c5b5f"
                             class="bi bi-buildings" viewBox="0 0 16 16">
@@ -60,7 +61,7 @@
                     </div>
                     <input type="text" id="input_empresa_cadastro" placeholder="Empresa">
                 </div>
-                <div class="input-field">
+                <div class="input-field" id="div_cadastro_validacao_representante">
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" fill="#3c5b5f"
                             class="bi bi-person" viewBox="0 0 16 16">
@@ -70,7 +71,7 @@
                     </div>
                     <input type="text" id="input_representante_cadastro" placeholder="Representante">
                 </div>
-                <div class="input-field">
+                <div class="input-field" id="div_cadastro_validacao_cnpj">
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" fill="#3c5b5f"
                             class="bi bi-briefcase" viewBox="0 0 16 16">
@@ -78,9 +79,9 @@
                                 d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5m1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0M1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5" />
                         </svg>
                     </div>
-                    <input type="text" id="input_cnpj_cadastro" placeholder="CNPJ">
+                    <input type="number" id="input_cnpj_cadastro" placeholder="CNPJ">
                 </div>
-                <div class="input-field">
+                <div class="input-field" id="div_cadastro_validacao_celular">
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" fill="#3c5b5f"
                             class="bi bi-telephone" viewBox="0 0 16 16">
@@ -88,9 +89,9 @@
                                 d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
                         </svg>
                     </div>
-                    <input type="text" id="input_celular_cadastro" placeholder="Celular">
+                    <input type="number" id="input_celular_cadastro" placeholder="Celular">
                 </div>
-                <div class="input-field">
+                <div class="input-field" id="div_cadastro_validacao_email">
                     <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" fill="#3c5b5f"
                             class="bi bi-envelope" viewBox="0 0 16 16">
                             <path
@@ -98,7 +99,7 @@
                         </svg></div>
                     <input type="text" id="input_email_cadastro" placeholder="Email">
                 </div>
-                <div class="input-field">
+                <div class="input-field" id="div_cadastro_validacao_senha">
                     <div class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" fill="#3c5b5f" class="bi bi-lock"
                             viewBox="0 0 16 16">
@@ -110,7 +111,6 @@
                 </div>
 
                 <button class="btn" type="submit" value="Sign up" onclick="validarCadastro()">Cadastre-se</button>
-                <a href="../../index.html"><img class="logo-casa" src="./assets/icon/home.png" alt="logo-home"></a>
 
                 <p class="account-text">Already have an account? <a href="#" id="sign-in-btn2">Fazer Cadastro</a></p>
             </div>
@@ -118,7 +118,7 @@
         <div class="panels-container">
             <div class="panel left-panel">
                 <div class="content">
-                    <h3>Ja tem cadastro?</h3>
+                    <h3>Já possui cadastro?</h3>
                     <button class="btn" id="sign-in-btn">Entrar</button>
                 </div>
 
@@ -166,18 +166,32 @@
 
         if (email == '' || senha == '') {
             console.log('CAMPOS VAZIOS');
+            div_login_validacao.classList.add('error');
+            div_senha_validacao.classList.add('error');
+            mensagem_erro.innerHTML = 'Preencha todos os campos'
+
         } else if (email.indexOf('@') < 0) {
-            console.log('O campo email precisa conter o caracter @')
+            div_login_validacao.classList.add('error');
+            div_senha_validacao.classList.remove('error');
+            mensagem_erro.innerHTML = 'O campo email precisa conter o caracter @';
         } else if (senha.length < 6) {
-            console.log('o campo senha deverá conter pelo menos 6 caracteres')
+            div_login_validacao.classList.remove('error');
+            div_senha_validacao.classList.add('error');
+            mensagem_erro.innerHTML = 'o campo senha deverá conter pelo menos 6 caracteres';
+
         } else {
-            console.log('entrando...')
+            mensagem_erro.innerHTML = '';
+            div_login_validacao.classList.remove('error');
+            div_senha_validacao.classList.remove('error');
+            div_login_validacao.classList.add('correct');
+            div_senha_validacao.classList.add('correct');
+            cadastrar();
         }
 
     }
 
     // função para validar cadastro
-    function validarCadastro(){
+    function validarCadastro() {
         const nomeEmpresa = input_empresa_cadastro.value;
         const representanteEmpresa = input_representante_cadastro.value;
         const cnpjEmpresa = input_cnpj_cadastro.value;
@@ -185,22 +199,81 @@
         const email = input_email_cadastro.value;
         const senha = input_senha_cadastro.value;
 
-        if(nomeEmpresa == '' || representanteEmpresa == '' || cnpjEmpresa == '' || celular == '' || email == '' || senha == ''){
+        if (nomeEmpresa == '' || representanteEmpresa == '' || cnpjEmpresa == '' || celular == '' || email == '' || senha == '') {
             console.log('preencha todos os campos');
-        }else if(cnpjEmpresa.length != 14){
-            console.log('CNPJ INVÁLIDO')
-        }else if(celular.length != 11){
-            console.log('Celular inválido')
-        }else if(email.indexOf('@') < 0){
-            console.log('o email precisa conter o campo @')
-        }else if(senha.length < 6){
-            console.log('o campo senha deverá ter no minimo 6 caracteres')
-        }else{
-            console.log('cadastrando ....')
+            div_cadastro_validacao_empresa.classList.add('error');
+            div_cadastro_validacao_representante.classList.add('error');
+            div_cadastro_validacao_cnpj.classList.add('error');
+            div_cadastro_validacao_celular.classList.add('error');
+            div_cadastro_validacao_email.classList.add('error');
+            div_cadastro_validacao_senha.classList.add('error');
+
+            erro_cadastro.innerHTML = 'Preencha todos os campos';
+
+        } else if (cnpjEmpresa.length != 14) {
+            console.log('CNPJ INVÁLIDO');
+            div_cadastro_validacao_empresa.classList.remove('error');
+            div_cadastro_validacao_representante.classList.remove('error');
+            div_cadastro_validacao_cnpj.classList.add('error');
+            div_cadastro_validacao_celular.classList.remove('error');
+            div_cadastro_validacao_email.classList.remove('error');
+            div_cadastro_validacao_senha.classList.remove('error');
+
+            erro_cadastro.innerHTML = 'CNPJ inválido (deve conter 14 caracteres)'
+
+
+        } else if (celular.length != 11) {
+            div_cadastro_validacao_empresa.classList.remove('error');
+            div_cadastro_validacao_representante.classList.remove('error');
+            div_cadastro_validacao_cnpj.classList.remove('error');
+            div_cadastro_validacao_celular.classList.add('error');
+            div_cadastro_validacao_email.classList.remove('error');
+            div_cadastro_validacao_senha.classList.remove('error');
+
+            erro_cadastro.innerHTML = 'Celular inválido (deve conter 11 caracteres)'
+        } else if (email.indexOf('@') < 0) {
+            div_cadastro_validacao_empresa.classList.remove('error');
+            div_cadastro_validacao_representante.classList.remove('error');
+            div_cadastro_validacao_cnpj.classList.remove('error');
+            div_cadastro_validacao_celular.classList.remove('error');
+            div_cadastro_validacao_email.classList.add('error');
+            div_cadastro_validacao_senha.classList.remove('error');
+
+            erro_cadastro.innerHTML = 'O campo e-mail deve conter o caracter @'
+        } else if (senha.length < 6) {
+            div_cadastro_validacao_empresa.classList.remove('error');
+            div_cadastro_validacao_representante.classList.remove('error');
+            div_cadastro_validacao_cnpj.classList.remove('error');
+            div_cadastro_validacao_celular.classList.remove('error');
+            div_cadastro_validacao_email.classList.remove('error');
+            div_cadastro_validacao_senha.classList.add('error');
+
+            erro_cadastro.innerHTML = 'O campo senha deve ter no minimo 6 caracteres';
+        } else {
+            todosOsCamposSaoValidos();
+            erro_cadastro.innerHTML = 'Cadastro realizado com sucesso';
+
+            cadastrar();
         }
     }
+    function todosOsCamposSaoValidos(){
+        div_cadastro_validacao_empresa.classList.remove('error');
+        div_cadastro_validacao_representante.classList.remove('error');
+        div_cadastro_validacao_cnpj.classList.remove('error');
+        div_cadastro_validacao_celular.classList.remove('error');
+        div_cadastro_validacao_email.classList.remove('error');
+        div_cadastro_validacao_senha.classList.remove('error');
 
-    
+        div_cadastro_validacao_empresa.classList.add('correct');
+        div_cadastro_validacao_representante.classList.add('correct');
+        div_cadastro_validacao_cnpj.classList.add('correct');
+        div_cadastro_validacao_celular.classList.add('correct');
+        div_cadastro_validacao_email.classList.add('correct');
+        div_cadastro_validacao_senha.classList.add('correct');
+
+        erro_cadastro.innerHTML = '';
+    }
+
 
 
     function cadastrar() {
