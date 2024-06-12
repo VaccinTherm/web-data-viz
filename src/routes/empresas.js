@@ -16,6 +16,10 @@ router.get("/buscar/:id", function (req, res) {
   empresaController.buscarPorId(req, res);
 });
 
+router.get("/buscar-veiculos-por-empresa/:idEmpresa", function (req, res) {
+  empresaController.buscarVeiculosPorEmpresa(req, res);
+});
+
 router.get("/listar", function (req, res) {
   empresaController.listar(req, res);
 });

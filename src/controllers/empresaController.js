@@ -8,6 +8,14 @@ function buscarPorCnpj(req, res) {
   });
 }
 
+function buscarVeiculosPorEmpresa(req, res) {
+  var idEmpresa = req.params.idEmpresa;
+
+  empresaModel.buscarVeiculosPorEmpresa(idEmpresa).then((resultado) => {
+    res.status(200).json(resultado);
+  });
+}
+
 function listar(req, res) {
   empresaModel.listar().then((resultado) => {
     res.status(200).json(resultado);
@@ -44,4 +52,5 @@ module.exports = {
   buscarPorId,
   cadastrar,
   listar,
+  buscarVeiculosPorEmpresa
 };
