@@ -59,7 +59,9 @@
                                 d="M2 11h1v1H2zm2 0h1v1H4zm-2 2h1v1H2zm2 0h1v1H4zm4-4h1v1H8zm2 0h1v1h-1zm-2 2h1v1H8zm2 0h1v1h-1zm2-2h1v1h-1zm0 2h1v1h-1zM8 7h1v1H8zm2 0h1v1h-1zm2 0h1v1h-1zM8 5h1v1H8zm2 0h1v1h-1zm2 0h1v1h-1zm0-2h1v1h-1z" />
                         </svg>
                     </div>
-                    <input type="text" id="input_empresa_cadastro" placeholder="Empresa">
+                    <select name="empresas" class="input-field" id="listarEmpresas">
+                        <option selected class="optionText">Selecione uma empresa</option>
+                    </select>
                 </div>
                 <div class="input-field" id="div_cadastro_validacao_representante">
                     <div class="icon">
@@ -70,16 +72,6 @@
                         </svg>
                     </div>
                     <input type="text" id="input_representante_cadastro" placeholder="Representante">
-                </div>
-                <div class="input-field" id="div_cadastro_validacao_cnpj">
-                    <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" fill="#3c5b5f"
-                            class="bi bi-briefcase" viewBox="0 0 16 16">
-                            <path
-                                d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5m1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0M1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5" />
-                        </svg>
-                    </div>
-                    <input type="number" id="input_cnpj_cadastro" placeholder="CNPJ">
                 </div>
                 <div class="input-field" id="div_cadastro_validacao_celular">
                     <div class="icon">
@@ -191,40 +183,25 @@
 
     // função para validar cadastro
     function validarCadastro() {
-        const nomeEmpresa = input_empresa_cadastro.value;
+        const nomeEmpresa = listarEmpresas.value;
         const representanteEmpresa = input_representante_cadastro.value;
-        const cnpjEmpresa = input_cnpj_cadastro.value;
         const celular = input_celular_cadastro.value;
         const email = input_email_cadastro.value;
         const senha = input_senha_cadastro.value;
 
-        if (nomeEmpresa == '' || representanteEmpresa == '' || cnpjEmpresa == '' || celular == '' || email == '' || senha == '') {
+        if (nomeEmpresa == '' || representanteEmpresa == '' || celular == '' || email == '' || senha == '') {
             console.log('preencha todos os campos');
             div_cadastro_validacao_empresa.classList.add('error');
             div_cadastro_validacao_representante.classList.add('error');
-            div_cadastro_validacao_cnpj.classList.add('error');
             div_cadastro_validacao_celular.classList.add('error');
             div_cadastro_validacao_email.classList.add('error');
             div_cadastro_validacao_senha.classList.add('error');
 
             erro_cadastro.innerHTML = 'Preencha todos os campos';
 
-        } else if (cnpjEmpresa.length != 14) {
-            console.log('CNPJ INVÁLIDO');
-            div_cadastro_validacao_empresa.classList.remove('error');
-            div_cadastro_validacao_representante.classList.remove('error');
-            div_cadastro_validacao_cnpj.classList.add('error');
-            div_cadastro_validacao_celular.classList.remove('error');
-            div_cadastro_validacao_email.classList.remove('error');
-            div_cadastro_validacao_senha.classList.remove('error');
-
-            erro_cadastro.innerHTML = 'CNPJ inválido (deve conter 14 caracteres)'
-
-
         } else if (celular.length != 11) {
             div_cadastro_validacao_empresa.classList.remove('error');
             div_cadastro_validacao_representante.classList.remove('error');
-            div_cadastro_validacao_cnpj.classList.remove('error');
             div_cadastro_validacao_celular.classList.add('error');
             div_cadastro_validacao_email.classList.remove('error');
             div_cadastro_validacao_senha.classList.remove('error');
@@ -233,7 +210,6 @@
         } else if (email.indexOf('@') < 0) {
             div_cadastro_validacao_empresa.classList.remove('error');
             div_cadastro_validacao_representante.classList.remove('error');
-            div_cadastro_validacao_cnpj.classList.remove('error');
             div_cadastro_validacao_celular.classList.remove('error');
             div_cadastro_validacao_email.classList.add('error');
             div_cadastro_validacao_senha.classList.remove('error');
@@ -242,7 +218,6 @@
         } else if (senha.length < 6) {
             div_cadastro_validacao_empresa.classList.remove('error');
             div_cadastro_validacao_representante.classList.remove('error');
-            div_cadastro_validacao_cnpj.classList.remove('error');
             div_cadastro_validacao_celular.classList.remove('error');
             div_cadastro_validacao_email.classList.remove('error');
             div_cadastro_validacao_senha.classList.add('error');
@@ -254,17 +229,15 @@
             cadastrar();
         }
     }
-    function todosOsCamposSaoValidos(){
+    function todosOsCamposSaoValidos() {
         div_cadastro_validacao_empresa.classList.remove('error');
         div_cadastro_validacao_representante.classList.remove('error');
-        div_cadastro_validacao_cnpj.classList.remove('error');
         div_cadastro_validacao_celular.classList.remove('error');
         div_cadastro_validacao_email.classList.remove('error');
         div_cadastro_validacao_senha.classList.remove('error');
 
         div_cadastro_validacao_empresa.classList.add('correct');
         div_cadastro_validacao_representante.classList.add('correct');
-        div_cadastro_validacao_cnpj.classList.add('correct');
         div_cadastro_validacao_celular.classList.add('correct');
         div_cadastro_validacao_email.classList.add('correct');
         div_cadastro_validacao_senha.classList.add('correct');
@@ -273,12 +246,13 @@
     }
 
     function cadastrar() {
-        let empresaVar = input_empresa_cadastro.value;
+        let empresaVar = listarEmpresas.value;
+        console.log(empresaVar);
         let nomeVar = input_representante_cadastro.value;
         let emailVar = input_email_cadastro.value;
         let celularVar = input_celular_cadastro.value
         let senhaVar = input_senha_cadastro.value;
-        let cnpjVar = input_cnpj_cadastro.value;
+
 
         // if (
         //     empresaVar == "" ||
@@ -291,41 +265,40 @@
         //     alert("Por favor, insira seus dados.");
         //     return;
         // } else {
-    // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        representanteServer: nomeVar,
-        emailServer: emailVar,
-        senhaServer: senhaVar,
-        empresaServer: empresaVar,
-        cnpjServer: cnpjVar,
-        celularServer: celularVar
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                representanteServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar,
+                empresaServer: empresaVar,
+                celularServer: celularVar
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
 
-        if (resposta.ok) {
-     console.log("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+                if (resposta.ok) {
+                    console.log("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
 
-          setTimeout(() => {
-            window.location = "./cadastro.html";
-          }, "2000");
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
+                    setTimeout(() => {
+                        window.location = "./cadastro.html";
+                    }, "2000");
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
 
-        }
+    }
     // }
 
     function entrar() {
@@ -364,7 +337,7 @@
                     sessionStorage.ID_EMPRESA = json.idEmpresa;
 
                     setTimeout(function () {
-                        window.location = "../../dashboard/dash.html";
+                        window.location = "../../dashboard/veiculos.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
@@ -381,4 +354,25 @@
         return false;
     }
 
+    function listar() {
+        fetch("/empresas/listar", {
+            method: "GET",
+        })
+            .then(function (resposta) {
+                resposta.json().then((empresas) => {
+                    empresas.forEach((empresa) => {
+                        listarEmpresas.innerHTML += `<option value='${empresa.cnpj}'>${empresa.cnpj}</option>`;
+                    });
+                });
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none";
+    }
+
+    listar();
 </script>

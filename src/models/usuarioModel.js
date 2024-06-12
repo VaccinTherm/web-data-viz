@@ -10,17 +10,20 @@ function autenticar(email, senha) {
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
-function cadastrar(empresa, representante, cnpj, celular, email, senha) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", empresa, representante, cnpj, celular, email, senha);
+function cadastrar(empresa, representante, celular, email, senha) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", empresa, representante, celular, email, senha);
     
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
-
-    // var instrucaoSql = ` INSERT INTO Empresa (nome, cnpj) VALUES ('${empresa}', '${cnpj}');
-    // `;
-
     var instrucaoSql = `
-        INSERT INTO Usuario (nome, email, senha, telefone, fkEmpresa) VALUES ('${representante}', '${email}', '${senha}', '${celular}', 1);
+        INSERT INTO usuario (nome, email, senha, telefone, fkEmpresa) VALUES ('${representante}', '${email}', '${senha}', '${celular}', (select idEmpresa FROM empresa WHERE cnpj = '${empresa}'))`;
+        
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function mandarMensagem(nomeCompleto, email, telefone, mensagem) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function mandarMensagem():", nomeCompleto, email, telefone, mensagem);
+    var instrucaoSql = `
+        INSERT INTO Mensagem (nomeCompleto, email, telefone, mensagem) VALUES ('${nomeCompleto}', '${email}', '${telefone}', '${mensagem}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -28,5 +31,6 @@ function cadastrar(empresa, representante, cnpj, celular, email, senha) {
 
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    mandarMensagem
 };
