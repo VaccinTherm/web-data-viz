@@ -10,14 +10,14 @@ var database = require("../database/config");
 
 function buscarRegistrosPorEmpresa(idEmpresa) {
 
-  var instrucaoSql = `SELECT idregistro, usuario.fkEmpresa AS idEmpresa, Registro.dht11Umidade, Registro.dht11Temperatura, DATE_FORMAT(dataHora, '%d/%m/%y às %h:%i:%s') AS dataHora FROM Registro JOIN usuario ON Registro.fkUsuarioRepresentante = usuario.idUsuario WHERE usuario.fkEmpresa = ${idEmpresa} ORDER BY idRegistro DESC LIMIT 10`;
+  var instrucaoSql = `SELECT idregistro, Usuario.fkEmpresa AS idEmpresa, Registro.dht11Umidade, Registro.dht11Temperatura, DATE_FORMAT(dataHora, '%d/%m/%y às %h:%i:%s') AS dataHora FROM Registro JOIN Usuario ON Registro.fkUsuarioRepresentante = Usuario.idUsuario WHERE Usuario.fkEmpresa = ${idEmpresa} ORDER BY idRegistro DESC LIMIT 10`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
 
 function buscarUltimoRegistroPorEmpresa(idEmpresa) {
-  var instrucaoSql = `SELECT idRegistro, usuario.fkEmpresa AS idEmpresa, Registro.dht11Umidade, Registro.dht11Temperatura, DATE_FORMAT(dataHora, '%d/%m/%y às %h:%i:%s') AS dataHora FROM Registro JOIN usuario ON Registro.fkUsuarioRepresentante = usuario.idUsuario WHERE usuario.fkEmpresa = ${idEmpresa} ORDER BY idRegistro DESC LIMIT 1;`;
+  var instrucaoSql = `SELECT idRegistro, Usuario.fkEmpresa AS idEmpresa, Registro.dht11Umidade, Registro.dht11Temperatura, DATE_FORMAT(dataHora, '%d/%m/%y às %h:%i:%s') AS dataHora FROM Registro JOIN Usuario ON Registro.fkUsuarioRepresentante = Usuario.idUsuario WHERE Usuario.fkEmpresa = ${idEmpresa} ORDER BY idRegistro DESC LIMIT 1;`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
