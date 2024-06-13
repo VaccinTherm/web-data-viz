@@ -144,7 +144,7 @@
 
       <label for="name">Nome completo</label>
 
-      <input type="text" class="form-input" placeholder="Digite seu nome completo">
+      <input type="text" class="form-input" id="input_nome_completo" placeholder="Digite seu nome completo">
 
     </div>
 
@@ -154,7 +154,7 @@
 
       <label for="email">Email</label>
 
-      <input type="email" class="form-input" placeholder="Digite seu email">
+      <input type="email" class="form-input" id="input_email" placeholder="Digite seu email">
 
     </div>
 
@@ -164,7 +164,7 @@
 
       <label for="tel">Telefone</label>
 
-      <input type="tel" class="form-input" placeholder="Digite seu telefone">
+      <input type="tel" class="form-input" id="input_telefone" placeholder="Digite seu telefone">
 
     </div>
 
@@ -174,13 +174,13 @@
 
       <label for="message">Mensagem</label>
 
-      <textarea name="message" cols="30" rows="10" placeholder="Digite sua mensagem" class="message"></textarea>
+      <textarea name="message" cols="30" rows="10" id="input_mensagem" placeholder="Digite sua mensagem" class="message"></textarea>
 
     </div>
 
 
 
-    <a href="#" class="btn-form">Enviar</a>
+    <a onclick="enviarMensagem()" class="btn-form">Enviar</a>
 
   </div>
 

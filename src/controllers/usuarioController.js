@@ -83,7 +83,7 @@ function cadastrar(req, res) {
 }
 
 function mandarMensagem(req, res) {
-    var nomeCompleto = req.body.nomeCompletoServer;
+    var nomeCompleto = req.body.nomeServer;
     var email = req.body.emailServer;
     var telefone = req.body.telefoneServer;
     var mensagem = req.body.mensagemServer;
