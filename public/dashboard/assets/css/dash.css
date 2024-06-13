@@ -29,7 +29,7 @@ body {
 
 .ideal_umidade,
 .ideal_temp {
-  background-color: rgb(177, 244, 177);
+  background-color: rgb(133, 190, 133);
   padding: 10px 24px;
   border-color: rgb(255, 255, 255);
   cursor: pointer;
@@ -37,19 +37,10 @@ body {
   font-weight: 400;
 }
 
-.critico_umidade,
-.critico_temp {
-  background-color: rgb(232, 232, 141);
-  padding: 10px 24px;
-  border-color: rgb(255, 255, 255);
-  cursor: pointer;
-  font-family: 'Dosis', 'sans-serif';
-  font-weight: 400;
-}
 
 .alerta_umidade,
 .alerta_temp {
-  background-color: rgb(251, 216, 151);
+  background-color: #dbdd60;
   padding: 10px 24px;
   border-color: rgb(255, 255, 255);
   cursor: pointer;
@@ -59,7 +50,7 @@ body {
 
 .emergencia_umidade,
 .emergencia_temp {
-  background-color: rgb(247, 156, 156);
+  background-color: #f17979;
   padding: 10px 24px;
   border-color: rgb(255, 255, 255);
   cursor: pointer;
