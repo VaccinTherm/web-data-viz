@@ -212,22 +212,18 @@ body {
   color: #7FA9C7;
 }
 
-.situacao {
+.situacaoBoa {
   width: 31px;
   height: 30px;
   background-color: rgb(133, 190, 133);
   border-radius: 50%;
 }
 
-.situacao2 {
+.situacaoAlerta {
   background-color: #dbdd60;
 }
 
-.situacao4 {
-  background-color: #dbdd60;
-}
-
-.situacao3 {
+.situacaoRuim {
   background-color: #f17979;
 }
 
