@@ -18,8 +18,9 @@ var aquarioModel = require("../models/aquarioModel");
 
 function buscarRegistrosPorEmpresa(req, res) {
   var idEmpresa = req.params.idEmpresa;
+  var idVeiculo = req.params.idVeiculo;
 
-  aquarioModel.buscarRegistrosPorEmpresa(idEmpresa).then((resultado) => {
+  aquarioModel.buscarRegistrosPorEmpresa(idEmpresa, idVeiculo).then((resultado) => {
     if (resultado.length > 0) {
       res.status(200).json(resultado);
     } else {
@@ -33,10 +34,11 @@ function buscarRegistrosPorEmpresa(req, res) {
 }
 function buscarUltimoRegistroPorEmpresa(req, res) {
   var idEmpresa = req.params.idEmpresa;
+  var idVeiculo = req.params.idVeiculo;
 
   console.log(`Recuperando medidas em tempo real`);
 
-  aquarioModel.buscarUltimoRegistroPorEmpresa(idEmpresa)
+  aquarioModel.buscarUltimoRegistroPorEmpresa(idEmpresa, idVeiculo)
     .then(function (resultado) {
       if (resultado.length > 0) {
         res.status(200).json(resultado);

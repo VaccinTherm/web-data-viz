@@ -7,11 +7,11 @@ var aquarioController = require("../controllers/aquarioController");
 //   aquarioController.buscarAquariosPorEmpresa(req, res);
 // });
 
-router.get("/buscar-registros/:idEmpresa", function (req, res) {
+router.get("/buscar-registros/:idEmpresa/:idVeiculo", function (req, res) {
   aquarioController.buscarRegistrosPorEmpresa(req, res);
 });
 
-router.get("/ultimo-registro/:idEmpresa", function (req, res) {
+router.get("/ultimo-registro/:idEmpresa/:idVeiculo", function (req, res) {
   aquarioController.buscarUltimoRegistroPorEmpresa(req, res);
 });
 

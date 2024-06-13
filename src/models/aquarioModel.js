@@ -8,16 +8,24 @@ var database = require("../database/config");
 //   return database.executar(instrucaoSql);
 // }
 
-function buscarRegistrosPorEmpresa(idEmpresa) {
+function buscarRegistrosPorEmpresa(idEmpresa, idVeiculo) {
 
-  var instrucaoSql = `SELECT idregistro, Usuario.fkEmpresa AS idEmpresa, Registro.dht11Umidade, Registro.dht11Temperatura, DATE_FORMAT(dataHora, '%d/%m/%y às %h:%i:%s') AS dataHora FROM Registro JOIN Usuario ON Registro.fkUsuarioRepresentante = Usuario.idUsuario WHERE Usuario.fkEmpresa = ${idEmpresa} ORDER BY idRegistro DESC LIMIT 10`;
+  var instrucaoSql = `SELECT idregistro, Usuario.fkEmpresa
+  AS idEmpresa, Registro.dht11Umidade, Registro.dht11Temperatura, DATE_FORMAT(dataHora, '%d/%m/%y às %h:%i:%s')
+  AS dataHora, Registro.fkVeiculoRegistro
+  FROM Registro JOIN Usuario ON Registro.fkUsuarioRepresentante = Usuario.idUsuario
+  WHERE Usuario.fkEmpresa = ${idEmpresa} AND Registro.fkVeiculoRegistro = ${idVeiculo} ORDER BY idRegistro DESC LIMIT 10;`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
 
-function buscarUltimoRegistroPorEmpresa(idEmpresa) {
-  var instrucaoSql = `SELECT idRegistro, Usuario.fkEmpresa AS idEmpresa, Registro.dht11Umidade, Registro.dht11Temperatura, DATE_FORMAT(dataHora, '%d/%m/%y às %h:%i:%s') AS dataHora FROM Registro JOIN Usuario ON Registro.fkUsuarioRepresentante = Usuario.idUsuario WHERE Usuario.fkEmpresa = ${idEmpresa} ORDER BY idRegistro DESC LIMIT 1;`;
+function buscarUltimoRegistroPorEmpresa(idEmpresa, idVeiculo) {
+  var instrucaoSql = `SELECT idregistro, Usuario.fkEmpresa
+  AS idEmpresa, Registro.dht11Umidade, Registro.dht11Temperatura, DATE_FORMAT(dataHora, '%d/%m/%y às %h:%i:%s')
+  AS dataHora, Registro.fkVeiculoRegistro
+  FROM Registro JOIN Usuario ON Registro.fkUsuarioRepresentante = Usuario.idUsuario
+  WHERE Usuario.fkEmpresa = ${idEmpresa} AND Registro.fkVeiculoRegistro = ${idVeiculo} ORDER BY idRegistro DESC LIMIT 1`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
