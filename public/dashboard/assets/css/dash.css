@@ -21,23 +21,34 @@ body {
 }
 
 .home {
-  width: 28px;
-  height: 28px;
-  margin-right: 20px;
-  opacity: 70%;
-  margin-top: 1.7%;
+  position: absolute;
+  top: 18.08%;
+  width: 35px;
+  height: 35px;
 }
 
 .usuarios {
   position: absolute;
   left: 6.15%;
-  top: 47.08%;
+  top: 15.20%;
+  width: 40px;
+  height: 40px;
 }
 
 .veiculos {
   position: absolute;
   left: 10.50%;
-  top: 42.08%;
+  top: 15.08%;
+  width: 40px;
+  height: 40px;
+}
+
+.duvidas {
+  position: absolute;
+  left: 15%;
+  top: 18.08%;
+  width: 35px;
+  height: 35px;
 }
 
 .logo {
@@ -212,22 +223,18 @@ body {
   color: #7FA9C7;
 }
 
-.situacao {
+.situacaoBoa {
   width: 31px;
   height: 30px;
   background-color: rgb(133, 190, 133);
   border-radius: 50%;
 }
 
-.situacao2 {
+.situacaoAlerta {
   background-color: #dbdd60;
 }
 
-.situacao4 {
-  background-color: #dbdd60;
-}
-
-.situacao3 {
+.situacaoRuim {
   background-color: #f17979;
 }
 

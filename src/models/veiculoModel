@@ -1,0 +1,13 @@
+var database = require("../database/config");
+
+function contarVeiculos() {
+    var instrucaoSql = `
+        SELECT COUNT(*) AS totalVeiculos FROM Veiculo;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+module.exports = {
+    contarVeiculos
+};

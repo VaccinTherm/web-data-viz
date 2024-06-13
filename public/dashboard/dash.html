@@ -20,11 +20,14 @@
   <body>
     <div class="cabecalho">
       <div class="home">
-        <a href="../index.html"><img src="assets/img/home.png" alt="Home" /></a>
+        <a href="../index.html"><img src="assets/img/casa.png" alt="Home" class="home" /></a>
       </div>
-      <a class="usuarios"><img src="assets/img/users.png" /></a>
+      <a class="usuarios"><img src="assets/img/comercial.png" class="usuarios" /></a>
       <a href="../dashboard/veiculos.html" id="veiculos" class="veiculos">
-        <img src="assets/img/cars.png" />
+        <img src="assets/img/caminhao-de-entrega.png" class="veiculos" />
+      </a>
+      <a href="./BobIA/public/index.html" id="duvidas" class="duvidas">
+        <img src="assets/img/pergunta.png" class="duvidas" />
       </a>
       <div class="logo"><img src="assets/img/logo.png" /></div>
     </div>
@@ -65,7 +68,7 @@
 
       <div class="Situação">
         <div class="legenda">Situação</div>
-        <div class="situacao" id="metrica_situacao"></div>
+        <div class="situacaoBoa" id="metrica_situacao"></div>
       </div>
 
       <div class="linha2"></div>
@@ -274,6 +277,15 @@
             const temperatura = parseFloat(novoRegistro[0].dht11Temperatura);
             const umidade = parseFloat(novoRegistro[0].dht11Umidade);
             const dataHora = novoRegistro[0].dataHora;
+            const situacao = document.querySelector(".situacaoBoa")
+
+            if (umidade >= 30 && umidade <= 59 ) {
+              situacao.classList.add("situacaoBoa")
+            } else if (umidade >= 60 && umidade <= 70) {
+              situacao.classList.add("situacaoAlerta")
+            } else {
+              situacao.classList.add("situacaoRuim")
+            }
 
             metrica_temperatura.innerHTML = `${temperatura}° C`;
             metrica_umidade.innerHTML = `${umidade}%`;
