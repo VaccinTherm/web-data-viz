@@ -28,9 +28,14 @@
     <div class="logo"><img src="assets/img/logo.png" /></div>
   </div>
 
-  <div class="mensagem">Olá Rayane</div>
-  <div class="submensagem">
-    Seja bem vinda! Acompanhe por aqui a situação do seu transporte.
+  <div class="container-analytics">
+    <div class="btn-group">
+      <button class="emergencia_temp">Abaixo de 1ºC Emergência</button>
+      <button class="alerta_temp">Abaixo de 2ºC Alerta</button>
+      <button class="ideal_temp">2ºC - 8ºC Ideal</button>
+      <button class="alerta_temp">Acima de 8ºC Alerta</button>
+      <button class="emergencia_temp"> Acima de 9ºC Emergência </button>
+    </div>
   </div>
 
   <div class="hora">
@@ -276,11 +281,15 @@
           const dataHora = novoRegistro[0].dataHora;
           const situacao = document.querySelector(".situacaoBoa")
 
-          if (umidade >= 30 && umidade <= 59) {
+          if (temperatura > 2 && temperatura <= 8) {
             situacao.classList.add("situacaoBoa")
-          } else if (umidade >= 60 && umidade <= 70) {
+          } else if (temperatura > 1 && temperatura <= 2) {
             situacao.classList.add("situacaoAlerta")
-          } else {
+          } else if (temperatura < 1){
+            situacao.classList.add("situacaoRuim")
+          } else if (temperatura > 8 && temperatura < 9){
+            situacao.classList.add("situacaoAlerta")
+          } else if (temperatura > 9){
             situacao.classList.add("situacaoRuim")
           }
 
@@ -301,9 +310,13 @@
             dadosUmidade.datasets[0].data.push(umidade);
             atualizaGraficos();
 
-            if (umidade >= 60 && umidade <= 70) {
+            if (temperatura > 1 && temperatura <= 2) {
               exibirAlertaTemperatura();
-            } else if (umidade > 70) {
+            } else if (temperatura < 1) {
+              exirbirErroTemperatura();
+            } else if (temperatura > 8 && temperatura <= 9){
+              exibirAlertaTemperatura();
+            } else if (temperatura > 9){
               exirbirErroTemperatura();
             }
 

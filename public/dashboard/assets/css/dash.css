@@ -20,6 +20,53 @@ body {
   padding-left: 30px;
 }
 
+
+.container-analytics {
+  margin-top: 1rem;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+.ideal_umidade,
+.ideal_temp {
+  background-color: rgb(177, 244, 177);
+  padding: 10px 24px;
+  border-color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-family: 'Dosis', 'sans-serif';
+  font-weight: 400;
+}
+
+.critico_umidade,
+.critico_temp {
+  background-color: rgb(232, 232, 141);
+  padding: 10px 24px;
+  border-color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-family: 'Dosis', 'sans-serif';
+  font-weight: 400;
+}
+
+.alerta_umidade,
+.alerta_temp {
+  background-color: rgb(251, 216, 151);
+  padding: 10px 24px;
+  border-color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-family: 'Dosis', 'sans-serif';
+  font-weight: bold;
+}
+
+.emergencia_umidade,
+.emergencia_temp {
+  background-color: rgb(247, 156, 156);
+  padding: 10px 24px;
+  border-color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-family: 'Dosis', 'sans-serif';
+  font-weight: bold;
+}
+
 .home {
   position: absolute;
   top: 18.08%;
@@ -185,6 +232,7 @@ body {
   font-weight: 400;
   color: #3C5B5F;
   margin-bottom: 0;
+  margin-top: -90px;
 }
 
 .linha1,
