@@ -134,25 +134,25 @@
             <div class="box box-1">
                 <p class="text">Total de Veículos</p>
 
-                <p class="text">200</p>
+                <p class="text" id="totalVeiculos">0</p>
             </div>
 
             <div class="box box-2">
                 <p class="text">Veículos Bons</p>
 
-                <p class="text">170</p>
+                <p class="text" id="totalVeiculos">0</p>
             </div>
 
             <div class="box box-3">
                 <p class="text">Veículos em Alerta</p>
 
-                <p class="text">20</p>
+                <p class="text" id="totalVeiculos">0</p>
             </div>
 
             <div class="box box-4">
                 <p class="text">Veículos Críticos</p>
 
-                <p class="text">10</p>
+                <p class="text" id="totalVeiculos">0</p>
             </div>
         </div>
     </div>
@@ -178,7 +178,7 @@
                 })
                 .then(function (veiculos) {
                     for (let i = 0; i < veiculos.length; i++) {
-                        const veiculo = veiculos[i];    
+                        const veiculo = veiculos[i];
                         console.log(veiculo);
                         listaVeiculos.innerHTML = `
                             <div class="caminhoes">
@@ -206,3 +206,31 @@
 </body>
 
 </html>
+
+<script>
+    function buscarTotalVeiculos() {
+        return fetch(`/medidas/contarVeiculos`, {
+            cache: "no-store",
+        })
+            .then(function (response) {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    console.error("Nenhum dado encontrado ou erro na API");
+                    return Promise.reject("Erro na API");
+                }
+            })
+            .then(function (total) {
+                document.getElementById("totalVeiculos").innerText = total[0].totalVeiculos;
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados: ${error}`);
+            });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        buscarTotalVeiculos();
+    });
+
+
+</script>
