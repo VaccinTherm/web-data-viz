@@ -67,7 +67,7 @@
                 <p class="text" id="totalVeiculos">0</p>
             </div>
 
-            <div class="box box-2">
+            <!-- <div class="box box-2">
                 <p class="text">Veículos Bons</p>
 
                 <p class="text" id="totalVeiculos">0</p>
@@ -83,7 +83,7 @@
                 <p class="text">Veículos Críticos</p>
 
                 <p class="text" id="totalVeiculos">0</p>
-            </div>
+            </div> -->
         </div>
     </div>
 
@@ -107,20 +107,21 @@
                     }
                 })
                 .then(function (veiculos) {
-                    for (let i = 0; i < veiculos.length; i++) {
+                    const qtdVeiculos = veiculos.length;
+                    document.getElementById('totalVeiculos').innerHTML = qtdVeiculos;
+                    for (let i = 0; i < qtdVeiculos; i++) {
                         const veiculo = veiculos[i];
                         console.log(veiculo);
                         listaVeiculos.innerHTML += `
                             <div class="caminhoes">
                                 <div><img class="imgCam" src="assets/img/caminhao.png" /></div>
-                                <a href="../dashboard/dash.html?${veiculo.idVeiculo}" onclick="salvarVeiculo(${veiculo.idVeiculo})" class="veiculo">Veículo ${veiculo.idVeiculo}</a>
+                                <a href="../dashboard/dash.html?${veiculo.idVeiculo}" onclick="salvarVeiculo(${veiculo.idVeiculo})" class="veiculo">Veículo ${i + 1}</a>
                                 <p class="texto">${veiculo.modeloVeiculo}</p>
                                 <div class="situacao"></div>
                                 <p class="texto">Boa</p>
                                 <p class="texto">${veiculo.responsavel}</p>
                                 <p class="texto">${veiculo.placa}</p>
                                 <div class="vacina">Coronavac</div>
-                                <div><img src="assets/img/mais.png" /></div>
                             </div>`;
                     }
                 })
@@ -141,7 +142,7 @@
 
 </html>
 
-<script>
+<!-- <script>
     function buscarTotalVeiculos() {
         return fetch(`/medidas/contarVeiculos`, {
             cache: "no-store",
@@ -167,4 +168,4 @@
     });
 
 
-</script>
+</script> -->

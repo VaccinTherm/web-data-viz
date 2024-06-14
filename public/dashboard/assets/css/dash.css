@@ -295,18 +295,20 @@ canvas {
   /* Remove as margens */
 }
 
+.vizualizacaoVeiculos {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
 .caminhoes {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto auto;
-  font-family: 'Manrope', sans-serif;
-  color: #ffffff;
-  font-size: 24px;
+  width: 1000px;
+  display: flex;
+  font-family: Manrope;
+  font-size: 20px;
+  justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
-  justify-content: start;
-  gap: 150px;
-  align-content: center;
-  text-align: center;
+  flex-grow: 1;
 }
 
 .imgCam {
@@ -376,20 +378,6 @@ canvas {
   margin-top: -25px;
 }
 
-.caminhoes {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto auto;
-  font-family: 'Manrope', sans-serif;
-  color: #7FA9C7;
-  font-size: 24px;
-  align-items: center;
-  margin-top: 20px;
-  justify-content: start;
-  gap: 70px;
-  align-content: center;
-  text-align: center;
-}
-
 .veiculo {
   text-decoration: none;
   color: #7FA9C7;
@@ -417,27 +405,11 @@ canvas {
 .box {
   width: 170px;
   height: 100px;
+  margin-top: 7rem;
   background-color: #7FA9C7;
   border-radius: 20px;
   display: grid;
-  gap: 0px;
-}
-
-.box-1 {
-  background-color: #7FA9C7;
-}
-
-.box-2 {
-  background-color: #85be85;
-}
-
-.box-3 {
-  background-color: #dbdd60;
-}
-
-.box-4 {
-  background-color: #f17979;
-}
+  }
 
 .text {
   font-family: 'Manrope', sans-serif;
