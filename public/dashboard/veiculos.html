@@ -27,7 +27,6 @@
         <div class="home">
           <a href="../index.html"><img src="assets/img/casa.png" alt="Home" class="home" /></a>
         </div>
-        <a class="usuarios"><img src="assets/img/comercial.png" class="usuarios" /></a>
         <a href="../dashboard/veiculos.html" id="veiculos" class="veiculos">
           <img src="assets/img/caminhao-de-entrega.png" class="veiculos" />
         </a>
@@ -40,21 +39,13 @@
     <div class="telaVeiculos">
         <div>
             <div class="perfil2">
-                <div class="imgPerfil"><img src="assets/img/perfil.png" /></div>
-
-                <div class="arroba">@rayane</div>
-
-                <div class="nome">Rayane G.</div>
+                <div class="nome nome-veiculos" id="b_usuario"></div>
 
                 <div class="linhaSegTela2"></div>
             </div>
 
             <div class="metricasSegTela">
                 <p class="tituloSegTela">Métricas Atuais</p>
-
-                <div class="linhaSegTela"></div>
-
-                <p class="veiculosSegTela">Veículos: 5</p>
             </div>
         </div>
 
@@ -91,6 +82,7 @@
         data-base-url="https://jsd-widget.atlassian.com"
         src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
     <script>
+        b_usuario.innerHTML = `Olá, ${sessionStorage.NOME_USUARIO}`;
         const idEmpresa = sessionStorage.ID_EMPRESA;
         console.log(idEmpresa);
 

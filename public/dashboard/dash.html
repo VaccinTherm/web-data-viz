@@ -18,7 +18,6 @@
     <div class="home">
       <a href="../index.html"><img src="assets/img/casa.png" alt="Home" class="home" /></a>
     </div>
-    <a class="usuarios"><img src="assets/img/comercial.png" class="usuarios" /></a>
     <a href="../dashboard/veiculos.html" id="veiculos" class="veiculos">
       <img src="assets/img/caminhao-de-entrega.png" class="veiculos" />
     </a>
@@ -39,15 +38,13 @@
   </div>
 
   <div class="hora">
-    <div class="data">14 Abr, 2024</div>
+    <div class="data" id="dataAtual">14 Abr, 2024</div>
     <div class="imgData"><img src="assets/img/calendario.png" /></div>
   </div>
 
   <div class="linha"></div>
   <div class="perfil">
-    <div class="imgPerfil"><img src="assets/img/perfil.png" /></div>
-    <div class="arroba">@rayane</div>
-    <div class="nome">Rayane G.</div>
+    <div class="nome" id="b_usuario"></div>
   </div>
 
   <div class="metricas">
@@ -88,6 +85,8 @@
     data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
 
   <script>
+    b_usuario.innerHTML = `Olá, ${sessionStorage.NOME_USUARIO}`;
+    dataAtual.innerHTML = getFormattedDate();
     const idEmpresa = sessionStorage.ID_EMPRESA;
     const idVeiculo = sessionStorage.ID_VEICULO;
     const labels = [];
@@ -226,6 +225,16 @@
         },
       },
     });
+
+    function getFormattedDate() {
+    const today = new Date();
+    const day = String(today.getDate()).padStart(2, '0');
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+    const year = today.getFullYear();
+
+    return `${day}/${month}/${year}`;
+}
+
 
     function atualizaGraficos() {
       graficoTemperatura.update();
