@@ -307,8 +307,10 @@
 
           if (dataHora !== dadosTemperatura.labels[dadosTemperatura.labels.length - 1]) {
             dadosTemperatura.labels.shift();
-            dadosUmidade.labels.shift();
             dadosTemperatura.labels.push(dataHora);
+
+            dadosUmidade.labels.shift();
+            dadosUmidade.labels.push(dataHora);
 
             dadosTemperatura.datasets[0].data.shift();
             dadosTemperatura.datasets[0].data.push(temperatura);
