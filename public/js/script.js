@@ -45,3 +45,35 @@ ScrollReveal().reveal('#about', {
   origin: 'left'
 });
 
+function enviarMensagem () {
+  let nomeVar = input_nome_completo.value;
+  let emailVar = input_email.value;
+  let telefoneVar = input_telefone.value
+  let mensagemVar = input_mensagem.value;
+
+  fetch("/usuarios/mandarMensagem", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        telefoneServer: telefoneVar,
+        mensagemServer: mensagemVar
+    }),
+})
+    .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          alert('Mensagem enviada!');
+        } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+    })
+    .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+
+}

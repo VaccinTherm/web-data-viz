@@ -1,331 +1,371 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- link do rostinho -->
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
-      rel="stylesheet"
-    />
-    <title>VaccinTherm | Dashboard</title>
-    <link rel="stylesheet" href="./assets/css/dash.css" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  </head>
 
-  <body>
-    <div class="cabecalho">
-      <div class="home">
-        <a href="../index.html"><img src="assets/img/casa.png" alt="Home" class="home" /></a>
-      </div>
-      <a class="usuarios"><img src="assets/img/comercial.png" class="usuarios" /></a>
-      <a href="../dashboard/veiculos.html" id="veiculos" class="veiculos">
-        <img src="assets/img/caminhao-de-entrega.png" class="veiculos" />
-      </a>
-      <a href="./BobIA/public/index.html" id="duvidas" class="duvidas">
-        <img src="assets/img/pergunta.png" class="duvidas" />
-      </a>
-      <div class="logo"><img src="assets/img/logo.png" /></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- link do rostinho -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
+  <title>VaccinTherm | Dashboard</title>
+  <link rel="stylesheet" href="./assets/css/dash.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+  <div class="cabecalho">
+    <div class="home">
+      <a href="../index.html"><img src="assets/img/casa.png" alt="Home" class="home" /></a>
+    </div>
+    <a class="usuarios"><img src="assets/img/comercial.png" class="usuarios" /></a>
+    <a href="../dashboard/veiculos.html" id="veiculos" class="veiculos">
+      <img src="assets/img/caminhao-de-entrega.png" class="veiculos" />
+    </a>
+    <a href="./BobIA/public/index.html" id="duvidas" class="duvidas">
+      <img src="assets/img/pergunta.png" class="duvidas" />
+    </a>
+    <div class="logo"><img src="assets/img/logo.png" /></div>
+  </div>
+
+  <div class="container-analytics">
+    <div class="btn-group">
+      <button class="emergencia_temp">Abaixo de 1ºC Emergência</button>
+      <button class="alerta_temp">Abaixo de 2ºC Alerta</button>
+      <button class="ideal_temp">2ºC - 8ºC Ideal</button>
+      <button class="alerta_temp">Acima de 8ºC Alerta</button>
+      <button class="emergencia_temp"> Acima de 9ºC Emergência </button>
+    </div>
+  </div>
+
+  <div class="hora">
+    <div class="data">14 Abr, 2024</div>
+    <div class="imgData"><img src="assets/img/calendario.png" /></div>
+  </div>
+
+  <div class="linha"></div>
+  <div class="perfil">
+    <div class="imgPerfil"><img src="assets/img/perfil.png" /></div>
+    <div class="arroba">@rayane</div>
+    <div class="nome">Rayane G.</div>
+  </div>
+
+  <div class="metricas">
+    <p class="titulo">Métricas Atuais</p>
+
+    <div class="linha1"></div>
+
+    <div class="temperatura">
+      <div class="imgTemp"><img src="assets/img/temperatura.png" /></div>
+      <div class="legenda">Temperatura</div>
+      <div id="metrica_temperatura" class="medida">8° C</div>
     </div>
 
-    <div class="mensagem">Olá Rayane</div>
-    <div class="submensagem">
-      Seja bem vinda! Acompanhe por aqui a situação do seu transporte.
+    <div class="Umidade">
+      <div class="imgUmi"><img src="assets/img/umidade.png" /></div>
+      <div class="legenda">Umidade</div>
+      <div id="metrica_umidade" class="medida">20%</div>
     </div>
 
-    <div class="hora">
-      <div class="data">14 Abr, 2024</div>
-      <div class="imgData"><img src="assets/img/calendario.png" /></div>
+    <div class="Situação">
+      <div class="legenda">Situação</div>
+      <div class="situacaoBoa" id="metrica_situacao"></div>
     </div>
 
-    <div class="linha"></div>
-    <div class="perfil">
-      <div class="imgPerfil"><img src="assets/img/perfil.png" /></div>
-      <div class="arroba">@rayane</div>
-      <div class="nome">Rayane G.</div>
+    <div class="linha2"></div>
+  </div>
+
+  <div class="charts">
+    <div class="chart-container">
+      <canvas id="graficoTemperatura"></canvas>
     </div>
-
-    <div class="metricas">
-      <p class="titulo">Métricas Atuais</p>
-
-      <div class="linha1"></div>
-
-      <div class="temperatura">
-        <div class="imgTemp"><img src="assets/img/temperatura.png" /></div>
-        <div class="legenda">Temperatura</div>
-        <div id="metrica_temperatura" class="medida">8° C</div>
-      </div>
-
-      <div class="Umidade">
-        <div class="imgUmi"><img src="assets/img/umidade.png" /></div>
-        <div class="legenda">Umidade</div>
-        <div id="metrica_umidade" class="medida">20%</div>
-      </div>
-
-      <div class="Situação">
-        <div class="legenda">Situação</div>
-        <div class="situacaoBoa" id="metrica_situacao"></div>
-      </div>
-
-      <div class="linha2"></div>
+    <div class="chart-container">
+      <canvas id="graficoUmidade"></canvas>
     </div>
+  </div>
 
-    <div class="charts">
-      <div class="chart-container">
-        <canvas id="graficoTemperatura"></canvas>
-      </div>
-      <div class="chart-container">
-        <canvas id="graficoUmidade"></canvas>
-      </div>
-    </div>
+  <script data-jsd-embedded data-key="24541678-4771-47a1-9087-0d5fee5b6600"
+    data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
 
-    <script data-jsd-embedded data-key="24541678-4771-47a1-9087-0d5fee5b6600" data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
+  <script>
+    const idEmpresa = sessionStorage.ID_EMPRESA;
+    const idVeiculo = sessionStorage.ID_VEICULO;
+    const labels = [];
+    const dataTemperatura = [];
+    const dataUmidade = [];
+    const dadosTemperatura = {
+      labels: labels,
+      datasets: [
+        {
+          label: "Temperatura",
+          data: dataTemperatura,
+          borderColor: "#7FA9C7",
+          borderWidth: 2,
+          pointBackgroundColor: "#7FA9C7",
+          pointRadius: 4,
+          pointHoverRadius: 6,
+        },
+      ],
+    };
+    const dadosUmidade = {
+      labels: labels,
+      datasets: [
+        {
+          label: "Umidade",
+          data: dataUmidade,
+          backgroundColor: "rgba(127, 169, 199, 0.2)",
+          borderColor: "#7FA9C7",
+          borderWidth: 2,
+          hoverBackgroundColor: "rgba(127, 169, 199, 0.4)",
+          hoverBorderColor: "#7FA9C7",
+        },
+      ],
+    };
 
-    <script>
-      const idEmpresa = sessionStorage.ID_EMPRESA;
-      const idVeiculo = sessionStorage.ID_VEICULO;
-      const labels = [];
-      const dataTemperatura = [];
-      const dataUmidade = [];
-      const dadosTemperatura = {
-        labels: labels,
-        datasets: [
-          {
-            label: "Temperatura",
-            data: dataTemperatura,
-            borderColor: "#7FA9C7",
-            borderWidth: 2,
-            pointBackgroundColor: "#7FA9C7",
-            pointRadius: 4,
-            pointHoverRadius: 6,
-          },
-        ],
-      };
-      const dadosUmidade = {
-        labels: labels,
-        datasets: [
-          {
-            label: "Umidade",
-            data: dataUmidade,
-            backgroundColor: "rgba(127, 169, 199, 0.2)",
-            borderColor: "#7FA9C7",
-            borderWidth: 2,
-            hoverBackgroundColor: "rgba(127, 169, 199, 0.4)",
-            hoverBorderColor: "#7FA9C7",
-          },
-        ],
-      };
-
-      var ctxTemperatura = document
-        .getElementById("graficoTemperatura")
-        .getContext("2d");
-      var graficoTemperatura = new Chart(ctxTemperatura, {
-        type: "line",
-        data: dadosTemperatura,
-        options: {
-          plugins: {
-            tooltip: {
-              titleFont: {
-                family: "Manrope, sans-serif",
-              },
-              bodyFont: {
-                family: "Manrope, sans-serif",
-              },
+    var ctxTemperatura = document
+      .getElementById("graficoTemperatura")
+      .getContext("2d");
+    var graficoTemperatura = new Chart(ctxTemperatura, {
+      type: "line",
+      data: dadosTemperatura,
+      options: {
+        plugins: {
+          tooltip: {
+            titleFont: {
+              family: "Manrope, sans-serif",
             },
-            legend: {
-              display: true,
-              labels: {
-                usePointStyle: true,
-                boxWidth: 0,
-              },
+            bodyFont: {
+              family: "Manrope, sans-serif",
             },
           },
-          scales: {
-            y: {
-              beginAtZero: true,
-              title: {
-                display: true,
-                text: "Temperatura (°C)",
-                font: {
-                  family: "Manrope, sans-serif",
-                  size: 14,
-                },
-                color: "#7FA9C7",
-              },
-            },
-            x: {
-              title: {
-                display: true,
-                text: "Horário",
-                font: {
-                  family: "Manrope, sans-serif",
-                  size: 14,
-                },
-                color: "#7FA9C7",
-              },
+          legend: {
+            display: true,
+            labels: {
+              usePointStyle: true,
+              boxWidth: 0,
             },
           },
         },
-      });
-
-      var ctxUmidade = document
-        .getElementById("graficoUmidade")
-        .getContext("2d");
-
-      var graficoUmidade = new Chart(ctxUmidade, {
-        type: "bar",
-        data: dadosUmidade,
-        options: {
-          plugins: {
-            tooltip: {
-              titleFont: {
-                family: "Manrope, sans-serif",
-              },
-              bodyFont: {
-                family: "Manrope, sans-serif",
-              },
-            },
-            legend: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
               display: true,
-              labels: {
-                usePointStyle: true,
-                boxWidth: 0,
+              text: "Temperatura (°C)",
+              font: {
+                family: "Manrope, sans-serif",
+                size: 14,
               },
+              color: "#7FA9C7",
             },
           },
-          scales: {
-            x: {
-              title: {
-                display: true,
-                text: "Horário",
-                font: {
-                  family: "Manrope, sans-serif",
-                  size: 14,
-                },
-                color: "#7FA9C7",
+          x: {
+            title: {
+              display: true,
+              text: "Horário",
+              font: {
+                family: "Manrope, sans-serif",
+                size: 14,
               },
-            },
-            y: {
-              beginAtZero: true,
-              title: {
-                display: true,
-                text: "Umidade (%)",
-                font: {
-                  family: "Manrope, sans-serif",
-                  size: 14,
-                },
-                color: "#7FA9C7",
-              },
+              color: "#7FA9C7",
             },
           },
         },
-      });
+      },
+    });
 
-      function atualizaGraficos() {
-        graficoTemperatura.update();
-        graficoUmidade.update();
-      }
+    var ctxUmidade = document
+      .getElementById("graficoUmidade")
+      .getContext("2d");
 
-      function obterRegistrosDoSensor(idEmpresa, idVeiculo) {
-        return fetch(`/aquarios/buscar-registros/${idEmpresa}/${idVeiculo}`, {
-          cache: "no-store",
+    var graficoUmidade = new Chart(ctxUmidade, {
+      type: "bar",
+      data: dadosUmidade,
+      options: {
+        plugins: {
+          tooltip: {
+            titleFont: {
+              family: "Manrope, sans-serif",
+            },
+            bodyFont: {
+              family: "Manrope, sans-serif",
+            },
+          },
+          legend: {
+            display: true,
+            labels: {
+              usePointStyle: true,
+              boxWidth: 0,
+            },
+          },
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: "Horário",
+              font: {
+                family: "Manrope, sans-serif",
+                size: 14,
+              },
+              color: "#7FA9C7",
+            },
+          },
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: "Umidade (%)",
+              font: {
+                family: "Manrope, sans-serif",
+                size: 14,
+              },
+              color: "#7FA9C7",
+            },
+          },
+        },
+      },
+    });
+
+    function atualizaGraficos() {
+      graficoTemperatura.update();
+      graficoUmidade.update();
+    }
+
+    function obterRegistrosDoSensor(idEmpresa, idVeiculo) {
+      return fetch(`/aquarios/buscar-registros/${idEmpresa}/${idVeiculo}`, {
+        cache: "no-store",
+      })
+        .then(function (response) {
+          if (response.ok) {
+            return response.json();
+          } else {
+            console.error("Nenhum dado encontrado ou erro na API");
+            return Promise.reject("Erro na API");
+          }
         })
-          .then(function (response) {
-            if (response.ok) {
-              return response.json();
-            } else {
-              console.error("Nenhum dado encontrado ou erro na API");
-              return Promise.reject("Erro na API");
-            }
-          })
-          .then(function (registros) {
-            console.log(registros);
-            for (let i = registros.length - 1; i >= 0; i--) {
-              const registro = registros[i];
-              labels.push(registro.dataHora);
-              const temperatura = parseFloat(registro.dht11Temperatura);
-              const umidade = parseFloat(registro.dht11Umidade);
-              dataTemperatura.push(temperatura);
-              dataUmidade.push(umidade);
-            }
+        .then(function (registros) {
+          console.log(registros);
+          for (let i = registros.length - 1; i >= 0; i--) {
+            const registro = registros[i];
+            labels.push(registro.dataHora);
+            const temperatura = parseFloat(registro.dht11Temperatura);
+            const umidade = parseFloat(registro.dht11Umidade);
+            dataTemperatura.push(temperatura);
+            dataUmidade.push(umidade);
+          }
+          atualizaGraficos();
+        })
+        .catch(function (error) {
+          console.error(
+            `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+          );
+        });
+    }
+
+    function obterUltimoRegistroDoSensor(idEmpresa, idVeiculo) {
+      return fetch(`/aquarios/ultimo-registro/${idEmpresa}/${idVeiculo}`, {
+        cache: "no-store",
+      })
+        .then(function (response) {
+          if (response.ok) {
+            return response.json();
+          } else {
+            console.error("Nenhum dado encontrado ou erro na API");
+            return Promise.reject("Erro na API");
+          }
+        })
+        .then(function (novoRegistro) {
+          const temperatura = parseFloat(novoRegistro[0].dht11Temperatura);
+          const umidade = parseFloat(novoRegistro[0].dht11Umidade);
+          const dataHora = novoRegistro[0].dataHora;
+          const situacao = document.querySelector(".situacaoBoa")
+
+          if (temperatura > 2 && temperatura <= 8) {
+            situacao.classList.add("situacaoBoa")
+          } else if (temperatura > 1 && temperatura <= 2) {
+            situacao.classList.add("situacaoAlerta")
+          } else if (temperatura < 1){
+            situacao.classList.add("situacaoRuim")
+          } else if (temperatura > 8 && temperatura < 9){
+            situacao.classList.add("situacaoAlerta")
+          } else if (temperatura > 9){
+            situacao.classList.add("situacaoRuim")
+          }
+
+          metrica_temperatura.innerHTML = `${temperatura}° C`;
+          metrica_umidade.innerHTML = `${umidade}%`;
+
+          if (dataHora !== dadosTemperatura.labels[dadosTemperatura.labels.length - 1]) {
+            dadosTemperatura.labels.shift();
+            dadosTemperatura.labels.push(dataHora);
+
+            dadosUmidade.labels.shift();
+            dadosUmidade.labels.push(dataHora);
+
+            dadosTemperatura.datasets[0].data.shift();
+            dadosTemperatura.datasets[0].data.push(temperatura);
+
+            dadosUmidade.datasets[0].data.shift();
+            dadosUmidade.datasets[0].data.push(umidade);
             atualizaGraficos();
-          })
-          .catch(function (error) {
-            console.error(
-              `Erro na obtenção dos dados p/ gráfico: ${error.message}`
-            );
-          });
-      }
 
-      function obterUltimoRegistroDoSensor(idEmpresa, idVeiculo) {
-        return fetch(`/aquarios/ultimo-registro/${idEmpresa}/${idVeiculo}`, {
-          cache: "no-store",
+            if (temperatura > 1 && temperatura <= 2) {
+              exibirAlertaTemperatura();
+            } else if (temperatura < 1) {
+              exirbirErroTemperatura();
+            } else if (temperatura > 8 && temperatura <= 9){
+              exibirAlertaTemperatura();
+            } else if (temperatura > 9){
+              exirbirErroTemperatura();
+            }
+
+          }
         })
-          .then(function (response) {
-            if (response.ok) {
-              return response.json();
-            } else {
-              console.error("Nenhum dado encontrado ou erro na API");
-              return Promise.reject("Erro na API");
-            }
-          })
-          .then(function (novoRegistro) {
-            const temperatura = parseFloat(novoRegistro[0].dht11Temperatura);
-            const umidade = parseFloat(novoRegistro[0].dht11Umidade);
-            const dataHora = novoRegistro[0].dataHora;
-            const situacao = document.querySelector(".situacaoBoa")
+        .catch(function (error) {
+          console.error(
+            `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+          );
+        });
+    }
 
-            if (umidade >= 30 && umidade <= 59 ) {
-              situacao.classList.add("situacaoBoa")
-            } else if (umidade >= 60 && umidade <= 70) {
-              situacao.classList.add("situacaoAlerta")
-            } else {
-              situacao.classList.add("situacaoRuim")
-            }
+    function inicializar(idEmpresa, idVeiculo) {
+      obterRegistrosDoSensor(idEmpresa, idVeiculo)
+        .then(
+          setInterval(function () {
+            obterUltimoRegistroDoSensor(idEmpresa, idVeiculo);
+          }, 2000)
+        )
+        .catch(function (error) {
+          console.error(`Erro na inicialização: ${error.message}`);
+        });
+    }
+    inicializar(idEmpresa, idVeiculo);
 
-            metrica_temperatura.innerHTML = `${temperatura}° C`;
-            metrica_umidade.innerHTML = `${umidade}%`;
+    function exibirAlertaTemperatura() {
+      Swal.fire({
+        title: "<strong>ALERTA!</strong>",
+        icon: "warning",
+        position: "top-end",
+        html: `A temperatura dos veículos precisam de atenção! `,
+        showCloseButton: true,
+      });
+    }
 
-            if (dataHora !== dadosTemperatura.labels[dadosTemperatura.labels.length - 1]) {
-              dadosTemperatura.labels.shift();
-              dadosTemperatura.labels.push(dataHora);
+    function exirbirErroTemperatura() {
+      Swal.fire({
+        title: "<strong>ALERTA!</strong>",
+        icon: "error",
+        position: "top-end",
+        html: `
+     A temperatura dos veículos precisam de mudança urgente!
+  `,
+        showCloseButton: true,
+      });
+    }
 
-              dadosUmidade.labels.shift();
-              dadosUmidade.labels.push(dataHora);
+  </script>
 
-              dadosTemperatura.datasets[0].data.shift();
-              dadosTemperatura.datasets[0].data.push(temperatura);
-
-              dadosUmidade.datasets[0].data.shift();
-              dadosUmidade.datasets[0].data.push(umidade);
-              atualizaGraficos();
-            }
-          })
-          .catch(function (error) {
-            console.error(
-              `Erro na obtenção dos dados p/ gráfico: ${error.message}`
-            );
-          });
-      }
-
-      function inicializar(idEmpresa, idVeiculo) {
-        obterRegistrosDoSensor(idEmpresa, idVeiculo)
-          .then(
-            setInterval(function () {
-              obterUltimoRegistroDoSensor(idEmpresa, idVeiculo);
-            }, 2000)
-          )
-          .catch(function (error) {
-            console.error(`Erro na inicialização: ${error.message}`);
-          });
-      }
-      inicializar(idEmpresa, idVeiculo);
-    </script>
-
-  </body>
+</body>
 
 </html>

@@ -1,0 +1,214 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ecebe7;
+  font-family: "Manrope";
+}
+
+:root {
+  --main-color: #7fa9c7;
+  --typography: #3c5b5f;
+  --background: #ecebe7;
+
+  font-size: 62.5%; /* 1rem = 10px */
+}
+
+.sideBar {
+  height: 100vh;
+  width: 320px;
+  background-color: #ecebe7;
+  border-right: solid 1.5px #3c5b5f;
+}
+
+.logoVaccin {
+  width: 320px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.containerTitulo {
+  font-size: 25px;
+  font-weight: 250;
+  text-align: center;
+  height: 70px;
+  width: 310px;
+  display: flex;
+  align-items: center;
+  margin-left: 30px;
+}
+
+.containerTitulo:hover {
+  color: #fff;
+}
+
+.tituloSideBar:hover {
+  color: #fff;
+  cursor: pointer;
+}
+
+.containerGeral {
+  display: flex;
+}
+
+.containerDois {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #ecebe7;
+  width: 1000px;
+  height: 100vh;
+}
+
+.nomeUsuario {
+  width: 550px;
+  height: 100px;
+  margin-top: 60px;
+  margin-left: 30px;
+}
+
+.duvida {
+  background-color: #d7dbde;
+  width: 900px;
+  height: 400px;
+  margin-left: 30px;
+  margin-top: 28px;
+  border-radius: 15px;
+}
+
+#resposta {
+  max-width: 340px;
+  text-align: justify;
+  font-size: 18px;
+  color: #3c5b5f;
+  margin-left: 24px;
+  margin-bottom: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.saudacao {
+  font-size: 50px;
+  font-weight: 350;
+  color: #7fa9c7;
+}
+
+.miniTexto {
+  font-size: 20px;
+  color: #3c5b5f;
+}
+
+.tituloDuvida {
+  font-size: 45px;
+  color: #7fa9c7;
+  margin-left: 40px;
+  margin-top: 10px;
+}
+
+.textoDuvida {
+  text-align: justify;
+  font-size: 18px;
+  color: #3c5b5f;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.inputDuvida {
+  width: 790px;
+  height: 45px;
+  padding: 20px;
+  margin-left: 40px;
+  font-family: "Manrope";
+  font-size: 15px;
+  background-color: #d7dbde;
+  border: solid 1.5px #3c5b5f;
+  border-radius: 14px;
+}
+
+.containerInput {
+  height: 45px;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.botaoEnviar {
+  margin-left: 2px;
+}
+
+.botaoEnviar:hover {
+  cursor: pointer;
+}
+
+.cabecalho {
+  position: absolute;
+  width: 1378px;
+  height: 60px;
+  left: -12px;
+  top: -12px;
+  background: #7FA9C7;
+  display: flex;
+  padding-left: 30px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+.home {
+  width: 28px;
+  height: 28px;
+  margin-right: 20px;
+  opacity: 70%;
+  margin-top: 1.7%;
+}
+
+.usuarios {
+  position: absolute;
+  left: 6.15%;
+  top: 47.08%;
+}
+
+.veiculos {
+  position: absolute;
+  left: 10.50%;
+  top: 42.08%;
+}
+
+.logo {
+  position: absolute;
+  left: 80.16%;
+  top: 33.78%;
+}
+
+.containerResposta {
+  background-color: #d7dbde;
+  width: 400px;
+  max-height: 400px;
+  margin-top: 185px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  margin-right: 30px;
+  opacity: 0; 
+  transition: height 0.2s ease, opacity 0.2s ease; 
+}
+
+.containerResposta.mostrar {
+  height: auto; 
+  opacity: 1;
+}
+
+.tituloResposta {
+  font-size: 40px;
+  color: #7fa9c7;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.hide {
+  display: none;
+}
