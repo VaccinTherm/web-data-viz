@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VaccinTherm | Dúvidas</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="icon" href="./assets/logistica.png">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="containerGeral">
+        <div class="cabecalho">
+            <div class="home">
+                <a href=""><img src="assets/home.png" alt="Home" /></a>
+            </div>
+            <div class="usuarios"><img src="assets/users.png" /></div>
+            <div id="veiculos" class="veiculos">
+                <img src="assets/cars.png" />
+            </div>
+            <div class="logo"><img src="assets/logo.png" /></div>
+        </div>
+        <div class="containerDois">
+            <div class="nomeUsuario">
+                <p class="saudacao">Olá, <span id="b_usuario">Usuario</span></p>
+                <p class="miniTexto">Essa é a nossa ferramenta para dúvidas técnicas</p>
+            </div>
+            <div class="duvida">
+                <p class="tituloDuvida">Dúvidas</p>
+                <br>
+                <p class="textoDuvida">
+                    A Tela de Dúvidas é uma ferramenta inovadora integrada ao nosso sistema, projetada para fornecer
+                    suporte instantâneo
+                    e respostas precisas às perguntas dos usuários, especialmente sobre dúvidas técnicas. Utilizando
+                    tecnologia de Inteligência Artificial (IA),
+                    a Tela de Dúvidas analisa e responde em tempo real, compreendendo o contexto das perguntas graças a
+                    algoritmos de processamento e uma vasta base de conhecimento.
+                    A IA aprende com cada interação, melhorando continuamente sua precisão.
+                    Disponível 24 horas por dia, a Tela de Dúvidas oferece suporte
+                    contínuo, eficiente e confiável, eliminando a necessidade de aguardar suporte humano. Experimente a
+                    Tela de Dúvidas e veja como ela pode transformar sua experiência,
+                    tornando-a mais prática e satisfatória.
+                </p>
+                <br><br><br><br>
+                <div class="containerInput">
+                    <input id="pergunta" placeholder="Digite sua pergunta" class="inputDuvida">
+                    <img src="assets/imgEnviar.svg" class="botaoEnviar" onclick="gerarResposta()">
+                </div>
+            </div>
+        </div>
+
+        <div class="containerResposta hide">
+            <p class="tituloResposta">Resposta da IA</p>
+            <br><br>
+            <div id="resposta" class="respostaIA">
+            </div>
+        </div>
+
+        <script>
+            b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+            
+
+            async function gerarResposta() {
+                const pergunta = document.getElementById('pergunta').value;
+                const containerResposta = document.querySelector(".containerResposta")
+
+                containerResposta.classList.remove("hide")
+
+                const response = await fetch('/perguntar', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ pergunta })
+                });
+
+                const data = await response.json();
+
+                resposta.style.display = 'block';
+                document.getElementById('resposta').innerText = data.resultado;
+                containerResposta.classList.add("mostrar")
+            }
+
+        </script>
+
+</body>
+
+</html>
